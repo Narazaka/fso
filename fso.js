@@ -342,7 +342,7 @@
                         if (err != null) {
                           return callback(err);
                         }
-                        return push_entry_paths(entry_paths);
+                        return push_entry_paths([entry_path.replace(basedir, '')].concat(__slice.call(entry_paths)));
                       });
                     } else {
                       return push_entry_paths([entry_path.replace(basedir, '')]);
@@ -378,7 +378,7 @@
                           return readdir(entry_path, basedir).then(function(_arg) {
                             var entry_paths;
                             entry_paths = _arg[0];
-                            return resolve(entry_paths);
+                            return resolve([entry_path.replace(basedir, '')].concat(__slice.call(entry_paths)));
                           });
                         } else {
                           return resolve([entry_path.replace(basedir, '')]);
@@ -417,6 +417,7 @@
             entry_path = path.join(dir, entry);
             stats = _this.fs.statSync(entry_path);
             if (stats.isDirectory()) {
+              entry_paths.push(entry_path.replace(basedir, ''));
               entry_paths = entry_paths.concat(readdir(entry_path, basedir));
             } else {
               entry_paths.push(entry_path.replace(basedir, ''));

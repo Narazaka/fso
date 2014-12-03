@@ -151,7 +151,7 @@ class FileSystemObject
 								if stats.isDirectory()
 									readdir entry_path, basedir, (err, entry_paths) =>
 										if err? then return callback err
-										push_entry_paths entry_paths
+										push_entry_paths [(entry_path.replace basedir, ''), entry_paths...]
 								else
 									push_entry_paths [entry_path.replace basedir, '']
 						)(path.join dir, entry)
@@ -170,7 +170,8 @@ class FileSystemObject
 										if err? then return reject err
 										if stats.isDirectory()
 											readdir entry_path, basedir
-											.then ([entry_paths]) -> resolve entry_paths
+											.then ([entry_paths]) ->
+												resolve [(entry_path.replace basedir, ''), entry_paths...]
 										else
 											resolve [entry_path.replace basedir, '']
 							)(path.join dir, entry)
@@ -190,6 +191,7 @@ class FileSystemObject
 				entry_path = path.join dir, entry
 				stats = @fs.statSync entry_path
 				if stats.isDirectory()
+					entry_paths.push entry_path.replace basedir, ''
 					entry_paths = entry_paths.concat readdir entry_path, basedir
 				else
 					entry_paths.push entry_path.replace basedir, ''
