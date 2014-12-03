@@ -25,7 +25,6 @@
     function FileSystemObject(fs, newPath) {
       this.fs = fs;
       this.path = path.resolve(newPath);
-      this._path = path.resolve(newPath);
     }
 
     single_path_methods = ['truncate', 'chown', 'lchown', 'chmod', 'lchmod', 'stat', 'lstat', 'readlink', 'realpath', 'unlink', 'rmdir', 'mkdir', 'readdir', 'utimes', 'readFile', 'writeFile', 'appendFile', 'exists'];

@@ -9,7 +9,6 @@ if require?
 class FileSystemObject
 	constructor: (@fs, newPath) ->
 		@path = path.resolve newPath
-		@_path = path.resolve newPath
 	single_path_methods = ['truncate', 'chown', 'lchown', 'chmod', 'lchmod', 'stat', 'lstat', 'readlink', 'realpath', 'unlink', 'rmdir', 'mkdir', 'readdir', 'utimes', 'readFile', 'writeFile', 'appendFile', 'exists']
 	single_path_methods_nosync = ['createReadStream', 'createWriteStream']
 	current_new_path_methods = ['rename', 'link', 'symlink']
