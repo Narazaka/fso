@@ -1,6 +1,6 @@
 {
 	"name": "fso",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "fso - FileSystemObject",
 	"keywords": ["fs", "filesystem"],
 	"main": "fso.js",
