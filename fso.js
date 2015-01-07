@@ -39,10 +39,10 @@
       method = single_path_methods[_i];
       FileSystemObject.prototype[method] = (function(method) {
         return function() {
-          var args, callback, _j, _ref;
-          args = 2 <= arguments.length ? __slice.call(arguments, 0, _j = arguments.length - 1) : (_j = 0, []), callback = arguments[_j++];
-          if (callback != null) {
-            return (_ref = this.fs)[method].apply(_ref, [this.path].concat(__slice.call(args), [callback]));
+          var args, _ref;
+          args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+          if (args[args.length - 1] instanceof Function) {
+            return (_ref = this.fs)[method].apply(_ref, [this.path].concat(__slice.call(args)));
           } else {
             return new Promise((function(_this) {
               return function(resolve, reject) {
@@ -74,10 +74,10 @@
       method = single_path_methods_nosync[_j];
       FileSystemObject.prototype[method] = (function(method) {
         return function() {
-          var args, callback, _k, _ref;
-          args = 2 <= arguments.length ? __slice.call(arguments, 0, _k = arguments.length - 1) : (_k = 0, []), callback = arguments[_k++];
-          if (callback != null) {
-            return (_ref = this.fs)[method].apply(_ref, [this.path].concat(__slice.call(args), [callback]));
+          var args, _ref;
+          args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+          if (args[args.length - 1] instanceof Function) {
+            return (_ref = this.fs)[method].apply(_ref, [this.path].concat(__slice.call(args)));
           } else {
             return new Promise((function(_this) {
               return function(resolve, reject) {
@@ -102,12 +102,12 @@
       method = current_new_path_methods[_k];
       FileSystemObject.prototype[method] = (function(method) {
         return function() {
-          var args, callback, current_path, newPath, new_path, _l, _ref;
-          newPath = arguments[0], args = 3 <= arguments.length ? __slice.call(arguments, 1, _l = arguments.length - 1) : (_l = 1, []), callback = arguments[_l++];
+          var args, current_path, newPath, new_path, _ref;
+          newPath = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
           current_path = this.path;
           new_path = path.resolve(path.dirname(this.path), newPath);
-          if (callback != null) {
-            return (_ref = this.fs)[method].apply(_ref, [current_path, new_path].concat(__slice.call(args), [callback]));
+          if (args[args.length - 1] instanceof Function) {
+            return (_ref = this.fs)[method].apply(_ref, [current_path, new_path].concat(__slice.call(args)));
           } else {
             return new Promise((function(_this) {
               return function(resolve, reject) {
@@ -128,8 +128,8 @@
       })(method);
       FileSystemObject.prototype[method + 'Sync'] = (function(methodSync) {
         return function() {
-          var args, current_path, new_path, _ref;
-          args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+          var args, current_path, newPath, new_path, _ref;
+          newPath = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
           current_path = this.path;
           new_path = path.resolve(path.dirname(this.path), newPath);
           return (_ref = this.fs)[methodSync].apply(_ref, [current_path, new_path].concat(__slice.call(args)));
@@ -141,10 +141,10 @@
       method = fd_methods[_l];
       FileSystemObject.prototype[method] = (function(method) {
         return function() {
-          var args, callback, _m, _ref;
-          args = 2 <= arguments.length ? __slice.call(arguments, 0, _m = arguments.length - 1) : (_m = 0, []), callback = arguments[_m++];
-          if (callback != null) {
-            return (_ref = this.fs)[method].apply(_ref, [this.fd].concat(__slice.call(args), [callback]));
+          var args, _ref;
+          args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+          if (args[args.length - 1] instanceof Function) {
+            return (_ref = this.fs)[method].apply(_ref, [this.fd].concat(__slice.call(args)));
           } else {
             return new Promise((function(_this) {
               return function(resolve, reject) {
@@ -173,13 +173,13 @@
     }
 
     FileSystemObject.prototype.open = function() {
-      var args, callback, _m, _ref;
-      args = 2 <= arguments.length ? __slice.call(arguments, 0, _m = arguments.length - 1) : (_m = 0, []), callback = arguments[_m++];
-      if (callback != null) {
-        return (_ref = this.fs).open.apply(_ref, [this.path].concat(__slice.call(args), [(function(_this) {
+      var args, _ref;
+      args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      if (args[args.length - 1] instanceof Function) {
+        return (_ref = this.fs).open.apply(_ref, [this.path].concat(__slice.call(args.slice(0, -1)), [(function(_this) {
           return function(err, fd) {
             _this.fd = fd;
-            return callback(err, fd);
+            return args[args.length - 1](err, fd);
           };
         })(this)]));
       } else {
@@ -239,9 +239,9 @@
     };
 
     FileSystemObject.prototype.mkdirp = function() {
-      var args, callback, mkdir, _m;
-      args = 2 <= arguments.length ? __slice.call(arguments, 0, _m = arguments.length - 1) : (_m = 0, []), callback = arguments[_m++];
-      if (callback != null) {
+      var args, mkdir;
+      args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      if (args[args.length - 1] instanceof Function) {
         mkdir = (function(_this) {
           return function(dir, callback) {
             return fs.stat(dir, function(err) {
@@ -251,7 +251,7 @@
                   if (err != null) {
                     return callback(err);
                   } else {
-                    return (_ref = _this.fs).mkdir.apply(_ref, [dir].concat(__slice.call(args), [callback]));
+                    return (_ref = _this.fs).mkdir.apply(_ref, [dir].concat(__slice.call(args.slice(0, -1)), [callback]));
                   }
                 });
               } else {
@@ -260,7 +260,7 @@
             });
           };
         })(this);
-        return mkdir(this.path, callback);
+        return mkdir(this.path, args[args.length - 1]);
       } else {
         mkdir = (function(_this) {
           return function(dir) {

@@ -16,9 +16,9 @@ class FileSystemObject
 #	listener_methods = ['watchFile', 'unwatchFile', 'watch']
 	for method in single_path_methods
 		@::[method] = ((method) ->
-			(args..., callback) ->
-				if callback?
-					@fs[method] @path, args..., callback
+			(args...) ->
+				if args[args.length - 1] instanceof Function
+					@fs[method] @path, args...
 				else
 					new Promise (resolve, reject) =>
 						@fs[method] @path, args..., (err, args...) ->
@@ -30,9 +30,9 @@ class FileSystemObject
 		)(method + 'Sync')
 	for method in single_path_methods_nosync
 		@::[method] = ((method) ->
-			(args..., callback) ->
-				if callback?
-					@fs[method] @path, args..., callback
+			(args...) ->
+				if args[args.length - 1] instanceof Function
+					@fs[method] @path, args...
 				else
 					new Promise (resolve, reject) =>
 						@fs[method] @path, args..., (err, args...) ->
@@ -40,27 +40,27 @@ class FileSystemObject
 		)(method)
 	for method in current_new_path_methods
 		@::[method] = ((method) ->
-			(newPath, args..., callback) ->
+			(newPath, args...) ->
 				current_path = @path
 				new_path = path.resolve path.dirname(@path), newPath
-				if callback?
-					@fs[method] current_path, new_path, args..., callback
+				if args[args.length - 1] instanceof Function
+					@fs[method] current_path, new_path, args...
 				else
 					new Promise (resolve, reject) =>
 						@fs[method] current_path, new_path, args..., (err, args...) ->
 							if err? then reject err else resolve args
 		)(method)
 		@::[method + 'Sync'] = ((methodSync) ->
-			(args...) ->
+			(newPath, args...) ->
 				current_path = @path
 				new_path = path.resolve path.dirname(@path), newPath
 				@fs[methodSync] current_path, new_path, args...
 		)(method + 'Sync')
 	for method in fd_methods
 		@::[method] = ((method) ->
-			(args..., callback) ->
-				if callback?
-					@fs[method] @fd, args..., callback
+			(args...) ->
+				if args[args.length - 1] instanceof Function
+					@fs[method] @fd, args...
 				else
 					new Promise (resolve, reject) =>
 						@fs[method] @fd, args..., (err, args...) ->
@@ -70,11 +70,11 @@ class FileSystemObject
 			(args...) ->
 				@fs[methodSync] @fd, args...
 		)(method + 'Sync')
-	open: (args..., callback) ->
-		if callback?
-			@fs.open @path, args..., (err, fd) =>
+	open: (args...) ->
+		if args[args.length - 1] instanceof Function
+			@fs.open @path, args[...-1]..., (err, fd) =>
 				@fd = fd
-				callback err, fd
+				args[args.length - 1] err, fd
 		else
 			new Promise (resolve, reject) =>
 				@fs.open @path, args..., (err, fd) =>
@@ -100,16 +100,16 @@ class FileSystemObject
 		delete @fd
 		ret
 	# convenient addition
-	mkdirp: (args..., callback) ->
-		if callback?
+	mkdirp: (args...) ->
+		if args[args.length - 1] instanceof Function
 			mkdir = (dir, callback) =>
 				fs.stat dir, (err) =>
 					if err?
 						mkdir path.dirname(dir), (err) =>
 							if err? then callback err
-							else @fs.mkdir dir, args..., callback
+							else @fs.mkdir dir, args[...-1]..., callback
 					else callback()
-			mkdir @path, callback
+			mkdir @path, args[args.length - 1]
 		else
 			mkdir = (dir) =>
 				new Promise (resolve, reject) =>
