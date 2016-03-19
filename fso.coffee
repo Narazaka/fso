@@ -101,7 +101,7 @@ class FileSystemObject
 	mkdirp: (args...) ->
 		if args[args.length - 1] instanceof Function
 			mkdir = (dir, callback) =>
-				fs.stat dir, (err) =>
+				@fs.stat dir, (err) =>
 					if err?
 						mkdir path.dirname(dir), (err) =>
 							if err? then callback err
@@ -111,7 +111,7 @@ class FileSystemObject
 		else
 			mkdir = (dir) =>
 				new Promise (resolve, reject) =>
-					fs.stat dir, (err) =>
+					@fs.stat dir, (err) =>
 						if err?
 							mkdir path.dirname(dir)
 							.then =>
@@ -122,7 +122,7 @@ class FileSystemObject
 	mkdirpSync: (args...) ->
 		mkdirSync = (dir) =>
 			try
-				fs.statSync dir
+				@fs.statSync dir
 			catch
 				mkdirSync path.dirname(dir)
 				@fs.mkdirSync dir, args...
