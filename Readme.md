@@ -1,6 +1,19 @@
 fso - FileSystemObject
 ==========================
 
+[![npm](https://img.shields.io/npm/v/fso.svg)](https://www.npmjs.com/package/fso)
+[![npm license](https://img.shields.io/npm/l/fso.svg)](https://www.npmjs.com/package/fso)
+[![npm download total](https://img.shields.io/npm/dt/fso.svg)](https://www.npmjs.com/package/fso)
+[![npm download by month](https://img.shields.io/npm/dm/fso.svg)](https://www.npmjs.com/package/fso)
+[![Bower](https://img.shields.io/bower/v/fso.svg)](https://github.com/Narazaka/fso)
+[![Bower](https://img.shields.io/bower/l/fso.svg)](https://github.com/Narazaka/fso)
+
+[![Dependency Status](https://david-dm.org/Narazaka/fso.svg)](https://david-dm.org/Narazaka/fso)
+[![devDependency Status](https://david-dm.org/Narazaka/fso/dev-status.svg)](https://david-dm.org/Narazaka/fso#info=devDependencies)
+[![Travis Build Status](https://travis-ci.org/Narazaka/fso.svg)](https://travis-ci.org/Narazaka/fso)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/Narazaka/fso?svg=true)](https://ci.appveyor.com/project/Narazaka/fso)
+[![Code Climate](https://codeclimate.com/github/Narazaka/fso/badges/gpa.svg)](https://codeclimate.com/github/Narazaka/fso)
+
 Objective 'fs'
 
 Installation
