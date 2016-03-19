@@ -5,15 +5,11 @@ else
 chai.should()
 expect = chai.expect
 if require?
-	unless Promise?
-		Promise = require 'bluebird'
 	sinon = require 'sinon'
 	fs = require 'fs'
 #	mock = require 'mock-fs'
 	fso = require '../fso.js'
 else
-	unless Promise?
-		Promise = @Promise
 	sinon = @sinon
 	fs = @fs
 	FileSystemObject = @FileSystemObject

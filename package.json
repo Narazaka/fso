@@ -1,6 +1,6 @@
 {
 	"name": "fso",
-	"version": "0.0.3",
+	"version": "0.1.0",
 	"description": "fso - FileSystemObject",
 	"keywords": ["fs", "filesystem"],
 	"main": "fso.js",
@@ -17,7 +17,6 @@
 		"sinon": ">= 1.10.3",
 		"istanbul": ">= 0.3.2",
 		"jade": ">= 1.0.2",
-		"bluebird": ">= 2.3.11",
 		"mock-fs": ">= 2.3.2"
 	},
 	"author": {

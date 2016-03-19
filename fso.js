@@ -3,19 +3,14 @@
 /* (C) 2014 Narazaka : Licensed under The MIT License - http://narazaka.net/license/MIT?2014 */
 
 (function() {
-  var FileSystemObject, Promise, path,
+  var FileSystemObject, path,
     __slice = [].slice;
 
   path = this.path;
 
-  Promise = this.Promise;
-
   if (typeof require !== "undefined" && require !== null) {
     if (path == null) {
       path = require('path');
-    }
-    if (Promise == null) {
-      Promise = require('bluebird');
     }
   }
 

@@ -69,7 +69,7 @@ Supports almost all the node.js 'fs' APIs excepts watch*.
 
 #### mkdirp
 
-    dir.mkdirp('long/deep/path/to');
+    fso.new('long/deep/path/to').mkdirp();
 
 #### mkpath (= mkdirp)
 

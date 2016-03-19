@@ -1,10 +1,8 @@
 ### (C) 2014 Narazaka : Licensed under The MIT License - http://narazaka.net/license/MIT?2014 ###
 
 path = @path
-Promise = @Promise
 if require?
 	path ?= require 'path'
-	Promise ?= require 'bluebird'
 
 class FileSystemObject
 	constructor: (@fs, newPath) ->
