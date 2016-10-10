@@ -1,0 +1,256 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>fso</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script src="assets/js/modernizr.js"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">fso</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> fso</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<h1 id="-fso-filesystemobject-https-github-com-narazaka-fso-"><a href="https://github.com/Narazaka/fso">fso - FileSystemObject</a></h1>
+				<p><a href="https://www.npmjs.com/package/fso"><img src="https://img.shields.io/npm/v/fso.svg" alt="npm"></a>
+					<a href="https://www.npmjs.com/package/fso"><img src="https://img.shields.io/npm/l/fso.svg" alt="npm license"></a>
+					<a href="https://www.npmjs.com/package/fso"><img src="https://img.shields.io/npm/dt/fso.svg" alt="npm download total"></a>
+				<a href="https://www.npmjs.com/package/fso"><img src="https://img.shields.io/npm/dm/fso.svg" alt="npm download by month"></a></p>
+				<p><a href="https://david-dm.org/Narazaka/fso"><img src="https://david-dm.org/Narazaka/fso.svg" alt="Dependency Status"></a>
+					<a href="https://david-dm.org/Narazaka/fso#info=devDependencies"><img src="https://david-dm.org/Narazaka/fso/dev-status.svg" alt="devDependency Status"></a>
+					<a href="https://travis-ci.org/Narazaka/fso"><img src="https://travis-ci.org/Narazaka/fso.svg" alt="Travis Build Status"></a>
+					<a href="https://ci.appveyor.com/project/Narazaka/fso"><img src="https://ci.appveyor.com/api/projects/status/github/Narazaka/fso?svg=true" alt="AppVeyor Build Status"></a>
+					<a href="https://codecov.io/github/Narazaka/fso?branch=master"><img src="https://codecov.io/github/Narazaka/fso/coverage.svg?branch=master" alt="codecov.io"></a>
+				<a href="https://codeclimate.com/github/Narazaka/fso"><img src="https://codeclimate.com/github/Narazaka/fso/badges/gpa.svg" alt="Code Climate"></a></p>
+				<p>fso - FileSystemObject is a objective fs interface like Pathname(ruby).</p>
+				<h2 id="installation">Installation</h2>
+				<pre><code>npm <span class="hljs-keyword">install</span> fso
+</code></pre><h2 id="usage">Usage</h2>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> fso = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fso'</span>);
+<span class="hljs-keyword">var</span> hoge = fso.new(<span class="hljs-string">'../hoge.txt'</span>);
+<span class="hljs-keyword">var</span> contents = hoge.readFileSync({<span class="hljs-attr">encoding</span>: <span class="hljs-string">'utf8'</span>});
+<span class="hljs-keyword">var</span> parent = fso.new(<span class="hljs-string">'../'</span>);
+parent.childrenAll().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">children</span>)</span>{
+  children.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">child</span>)</span>{child.unlinkSync();});
+});
+</code></pre>
+				<p>or use this on the browsers ...</p>
+				<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"fso.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-comment">/* BrowserFS init... */</span>
+<span class="hljs-keyword">var</span> fso = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fso'</span>);
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+				<h2 id="api">API</h2>
+				<p><a href="https://narazaka.github.io/fso/index.html">API Documents (with type annotations)</a></p>
+				<h3 id="objective-methods">objective methods</h3>
+				<h4 id="new-join">new / join</h4>
+				<pre><code class="lang-javascript">dir = fso.new(<span class="hljs-string">'dir'</span>);
+a = dir.new(<span class="hljs-string">'a.txt'</span>);
+a.writeFileSync(<span class="hljs-string">'aaaaaa'</span>);
+</code></pre>
+				<h4 id="parent">parent</h4>
+				<pre><code class="lang-javascript">dir = fso.new(<span class="hljs-string">'dir'</span>);
+p = dir.parent();
+dir = p.new(<span class="hljs-string">'dir'</span>);
+</code></pre>
+				<h4 id="children-childrensync">children, childrenSync</h4>
+				<pre><code class="lang-javascript">dir = fso.new(<span class="hljs-string">'dir'</span>);
+files = dir.childrenSync();
+</code></pre>
+				<h4 id="childrenall-childrenallsync">childrenAll, childrenAllSync</h4>
+				<pre><code class="lang-javascript">dir = fso.new(<span class="hljs-string">'dir'</span>);
+files = dir.childrenAllSync();
+</code></pre>
+				<h3 id="-fs-api">&#39;fs&#39; API</h3>
+				<p>Supports all the node.js &#39;fs&#39; APIs that needs no first path argument.</p>
+				<p><code>method(...args, callback)</code>, <code>methodSync(...args)</code> and <code>promise = method(...args)</code></p>
+				<h4 id="one-file-args">one file args</h4>
+				<pre><code class="lang-javascript">fs.truncateSync(<span class="hljs-string">'/path/to/file'</span>, <span class="hljs-number">0</span>);
+<span class="hljs-comment">// is</span>
+file = fso.new(<span class="hljs-string">'/path/to/file'</span>);
+file.truncateSync(<span class="hljs-number">0</span>);
+</code></pre>
+				<h4 id="two-file-args">two file args</h4>
+				<pre><code class="lang-javascript">fs.rename(<span class="hljs-string">'/path/to/file'</span>, <span class="hljs-string">'newfile'</span>, callback);
+<span class="hljs-comment">// is</span>
+file = fso.new(<span class="hljs-string">'/path/to/file'</span>);
+file.remane(<span class="hljs-string">'newfile'</span>, callback);
+</code></pre>
+				<h4 id="fd-args">fd args</h4>
+				<pre><code class="lang-javascript">fd = fs.openSync(<span class="hljs-string">'/path/to/file'</span>);
+fs.ftruncateSync(fd, <span class="hljs-number">0</span>);
+fs.close(fd);
+<span class="hljs-comment">// is</span>
+file = fso.new(<span class="hljs-string">'/path/to/file'</span>);
+file.openSync();
+file.ftruncateSync(<span class="hljs-number">0</span>);
+file.close();
+</code></pre>
+				<h3 id="convenient-additional">convenient additional</h3>
+				<h4 id="mkdirall">mkdirAll</h4>
+				<pre><code class="lang-javascript">fso.new(<span class="hljs-string">'long/deep/path/to'</span>).mkdirAll().then(...);
+</code></pre>
+				<h4 id="mkdirp-mkdirall-">mkdirp (= mkdirAll)</h4>
+				<h4 id="mkpath-mkdirall-">mkpath (= mkdirAll)</h4>
+				<h4 id="readdirall">readdirAll</h4>
+				<pre><code class="lang-javascript">dir.readdirAllSync()
+<span class="hljs-comment">// results</span>
+[<span class="hljs-string">'a.txt'</span>, <span class="hljs-string">'aa'</span>, <span class="hljs-string">'aa/a.txt'</span>, <span class="hljs-string">'aa/b'</span>, <span class="hljs-string">'aa/b/c.txt'</span>]
+</code></pre>
+				<h4 id="rmdirall">rmdirAll</h4>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">await</span> dir.rmdirAll(<span class="hljs-string">'junk'</span>);
+</code></pre>
+				<h4 id="rmtree-rmdirall-">rmtree (= rmdirAll)</h4>
+				<h3 id="path-methods">path methods</h3>
+				<h4 id="basename">basename</h4>
+				<pre><code class="lang-javascript">fso.new(<span class="hljs-string">"a/b/c"</span>).basename(); <span class="hljs-comment">// "c"</span>
+</code></pre>
+				<h4 id="relative">relative</h4>
+				<pre><code class="lang-javascript">fso.new(<span class="hljs-string">"a/b/c"</span>).relative(fso.new(<span class="hljs-string">"a/d"</span>)); <span class="hljs-comment">// "../d"</span>
+fso.new(<span class="hljs-string">"a/b/c"</span>).relative(<span class="hljs-string">"a/d"</span>); <span class="hljs-comment">// "../d"</span>
+</code></pre>
+				<h2 id="license">License</h2>
+				<p>This is released under <a href="http://narazaka.net/license/MIT?2016">MIT License</a>.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module tsd-is-not-exported">
+						<a href="modules/_fso_.html">"fso"</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="classes/filesystemobject.html" class="tsd-kind-icon">File<wbr>System<wbr>Object</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.io" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
