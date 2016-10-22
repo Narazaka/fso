@@ -114,6 +114,11 @@ files = dir.childrenSync();
 				<pre><code class="lang-javascript">dir = fso.new(<span class="hljs-string">'dir'</span>);
 files = dir.childrenAllSync();
 </code></pre>
+				<h3 id="path">path</h3>
+				<h4 id="path-tostring">path / toString</h4>
+				<pre><code class="lang-javascript">fooPath = fso.new(<span class="hljs-string">'foo'</span>).path;
+fooPath = fso.new(<span class="hljs-string">'foo'</span>).toString();
+</code></pre>
 				<h3 id="-fs-api">&#39;fs&#39; API</h3>
 				<p>Supports all the node.js &#39;fs&#39; APIs that needs no first path argument.</p>
 				<p><code>method(...args, callback)</code>, <code>methodSync(...args)</code> and <code>promise = method(...args)</code></p>
