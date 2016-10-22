@@ -7,7 +7,7 @@ export class FileSystemObject {
   /**
    * @params paths `path.resolve(...paths)`
    */
-	constructor(...paths: string[]);
+  constructor(...paths: string[]);
 
   rename(newPath: string, callback: (err?: NodeJS.ErrnoException) => void): void;
   rename(newPath: string): Promise<void>;
