@@ -1,31 +1,54 @@
 {
-	"name": "fso",
-	"version": "0.1.1",
-	"description": "fso - FileSystemObject",
-	"keywords": ["fs", "filesystem"],
-	"main": "fso.js",
-	"scripts": {
-		"test": "mocha"
-	},
-	"dependencies": {
-	},
-	"devDependencies": {
-		"coffee-script": ">= 1.8.0",
-		"mocha": ">= 2.0.0",
-		"mocha-phantomjs": ">= 3.5.1",
-		"chai": ">= 1.9.2",
-		"sinon": ">= 1.10.3",
-		"istanbul": ">= 0.3.2",
-		"jade": ">= 1.0.2",
-		"mock-fs": ">= 2.3.2"
-	},
-	"author": {
-		"name": "narazaka",
-		"url": "http://narazaka.net/"
-	},
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/Narazaka/fso.git"
-	}
+  "name": "fso",
+  "version": "0.1.1",
+  "description": "fso - FileSystemObject",
+  "keywords": [
+    "fs",
+    "filesystem",
+    "pathname"
+  ],
+  "main": "./dist/lib/fso.js",
+  "types": "./src/lib/fso.d.ts",
+  "files": [
+    "src",
+    "node",
+    "web"
+  ],
+  "scripts": {
+    "dist": "npm run node && npm run web",
+    "node": "webpack",
+    "web": "webpack --config ./webpack.config.web.js",
+    "test": "mocha",
+    "doc": "rm -rf tmpdoc && typedoc --mode file --out tmpdoc --includeDeclarations --excludeExternals src && mv doc/.git tmpdoc/.git && rm -rf doc && mv tmpdoc doc"
+  },
+  "dependencies": {
+    "@types/node": "^6.0.45"
+  },
+  "devDependencies": {
+    "babel-core": "^6.17.0",
+    "babel-eslint": "^7.0.0",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-power-assert": "^1.0.0",
+    "babel-preset-stage-3": "^6.17.0",
+    "browserfs": "^1.0.0",
+    "eslint": "^3.8.1",
+    "eslint-config-narazaka": "^1.0.0",
+    "eslint-loader": "^1.6.0",
+    "mocha": "^3.1.2",
+    "power-assert": "^1.4.1",
+    "sinon": "^1.17.6",
+    "typedoc": "^0.5.0",
+    "webpack": "^1.13.2"
+  },
+  "author": {
+    "name": "narazaka",
+    "url": "http://narazaka.net/"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Narazaka/fso.git"
+  }
 }

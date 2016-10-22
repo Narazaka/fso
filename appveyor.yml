@@ -5,14 +5,15 @@ branches:
 install:
   - ps: Install-Product node $env:nodejs_version
   - node --version
-  - npm install -g npm
-  - npm --version
-  - npm install
+  - npm install -g yarn
+  - yarn --version
+  - yarn install
 test_script:
   - npm test
 build: off
 deploy: off
 environment:
   matrix:
-    - nodejs_version: 4
-    - nodejs_version: 5
+    - nodejs_version: 6
+cache:
+  - node_modules
