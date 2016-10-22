@@ -192,9 +192,13 @@ class FileSystemObject {
 
   async rmAll(callback) {
     try {
-      (await this.childrenAll())
-        .reverse()
-        .forEach(async (child) => await child.isDirectory() ? await child.rmdir() : await child.unlink());
+      for (const child of (await this.childrenAll()).reverse()) {
+        if (await child.isDirectory()) {
+          await child.rmdir();
+        } else {
+          await child.unlink();
+        }
+      }
     } catch (error) {
       if (callback) {
         callback(error);
@@ -206,9 +210,13 @@ class FileSystemObject {
   }
 
   rmAllSync() {
-    this.childrenAllSync()
-      .reverse()
-      .forEach((child) => child.isDirectorySync() ? child.rmdirSync() : child.unlinkSync());
+    for (const child of this.childrenAllSync()) {
+      if (child.isDirectorySync()) {
+        child.rmdirSync();
+      } else {
+        child.unlinkSync();
+      }
+    }
   }
 
   rmtree(callback) {
