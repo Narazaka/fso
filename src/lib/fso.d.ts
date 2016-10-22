@@ -170,6 +170,35 @@ export class FileSystemObject {
   fdatasync(): Promise<void>;
   fdatasyncSync(): void;
 
+  /** call stats' same name method */
+  isFile(): Promise<boolean>;
+  /** call stats' same name method */
+  isFileSync(): boolean;
+  /** call stats' same name method */
+  isDirectory(): Promise<boolean>;
+  /** call stats' same name method */
+  isDirectorySync(): boolean;
+  /** call stats' same name method */
+  isBlockDevice(): Promise<boolean>;
+  /** call stats' same name method */
+  isBlockDeviceSync(): boolean;
+  /** call stats' same name method */
+  isCharacterDevice(): Promise<boolean>;
+  /** call stats' same name method */
+  isCharacterDeviceSync(): boolean;
+  /** call stats' same name method */
+  isSymbolicLink(): Promise<boolean>;
+  /** call stats' same name method */
+  isSymbolicLinkSync(): boolean;
+  /** call stats' same name method */
+  isFIFO(): Promise<boolean>;
+  /** call stats' same name method */
+  isFIFOSync(): boolean;
+  /** call stats' same name method */
+  isSocket(): Promise<boolean>;
+  /** call stats' same name method */
+  isSocketSync(): boolean;
+
   /** like mkdir -p */
   mkdirAll(callback: (err?: NodeJS.ErrnoException) => void): void;
   /** like mkdir -p */
