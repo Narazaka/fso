@@ -11,7 +11,7 @@
   "types": "./src/lib/fso.d.ts",
   "files": [
     "src",
-    "node",
+    "dist",
     "web"
   ],
   "scripts": {
