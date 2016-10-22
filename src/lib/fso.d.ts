@@ -195,11 +195,11 @@ export class FileSystemObject {
   /** like mkdir -p */
   mkpathSync(mode?: number | string): void;
   /** like rm -rf */
-  rmdirAll(callback: (err?: NodeJS.ErrnoException) => void): void;
+  rmAll(callback: (err?: NodeJS.ErrnoException) => void): void;
   /** like rm -rf */
-  rmdirAll(): Promise<void>;
+  rmAll(): Promise<void>;
   /** like rm -rf */
-  rmdirAllSync(): void;
+  rmAllSync(): void;
   /** like ls -R */
   readdirAll(callback: (err: NodeJS.ErrnoException, files: string[]) => void): void;
   /** like ls -R */

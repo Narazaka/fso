@@ -146,13 +146,13 @@ dir.readdirAllSync()
 ['a.txt', 'aa', 'aa/a.txt', 'aa/b', 'aa/b/c.txt']
 ```
 
-#### rmdirAll
+#### rmAll
 
 ```javascript
-await dir.rmdirAll('junk');
+await dir.rmAll('junk');
 ```
 
-#### rmtree (= rmdirAll)
+#### rmtree (= rmAll)
 
 ### path methods
 

@@ -190,7 +190,7 @@ class FileSystemObject {
     return this.childrenAllSync().map((child) => this.relative(child));
   }
 
-  async rmdirAll(callback) {
+  async rmAll(callback) {
     try {
       (await this.childrenAll())
         .reverse()
@@ -205,18 +205,18 @@ class FileSystemObject {
     if (callback) callback();
   }
 
-  rmdirAllSync() {
+  rmAllSync() {
     this.childrenAllSync()
       .reverse()
       .forEach((child) => child.isDirectorySync() ? child.rmdirSync() : child.unlinkSync());
   }
 
   rmtree(callback) {
-    return this.rmdirAll(callback);
+    return this.rmAll(callback);
   }
 
   rmtreeSync() {
-    return this.rmdirAllSync();
+    return this.rmAllSync();
   }
 
   // path methods
