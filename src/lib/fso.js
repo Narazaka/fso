@@ -62,6 +62,10 @@ class FileSystemObject {
     this.path = path.resolve(...paths);
   }
 
+  toString() {
+    return this.path;
+  }
+
   get constants() {
     return fs.constants;
   }

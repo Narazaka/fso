@@ -82,6 +82,15 @@ dir = fso.new('dir');
 files = dir.childrenAllSync();
 ```
 
+### path
+
+#### path / toString
+
+```javascript
+fooPath = fso.new('foo').path;
+fooPath = fso.new('foo').toString();
+```
+
 ### 'fs' API
 
 Supports all the node.js 'fs' APIs that needs no first path argument.

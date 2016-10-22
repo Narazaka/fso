@@ -9,6 +9,9 @@ export class FileSystemObject {
    */
   constructor(...paths: string[]);
 
+  readonly path: string;
+  toString(): string;
+
   rename(newPath: string, callback: (err?: NodeJS.ErrnoException) => void): void;
   rename(newPath: string): Promise<void>;
   renameSync(newPath: string): void;
