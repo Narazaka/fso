@@ -24,7 +24,7 @@ module.exports = {
     path:          path.join(__dirname),
     filename:      "dist/lib/[name].js",
     library:       "fso",
-    libraryTarget: "commonjs",
+    libraryTarget: "commonjs2",
   },
   plugins: [
     new webpack.optimize.DedupePlugin(),

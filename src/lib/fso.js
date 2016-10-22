@@ -412,4 +412,4 @@ for (const _method of statsMethods) {
   })(`${_method}Sync`);
 }
 
-export default new FileSystemObject(process.cwd());
+module.exports = new FileSystemObject(process.cwd());

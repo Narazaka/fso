@@ -2,13 +2,8 @@
 
 import * as fs from "fs";
 
-/** fso - fs operation with the path, like Pathname(Ruby) */
-declare module "fso" {
-	export = new FileSystemObject();
-}
-
 /** fs operation with the path, like Pathname(Ruby) */
-export class FileSystemObject {
+declare class FileSystemObject {
   /**
    * @params paths `path.resolve(...paths)`
    */
@@ -222,3 +217,6 @@ export class FileSystemObject {
   childrenAll(): Promise<FileSystemObject[]>;
   childrenAllSync(): FileSystemObject[];
 }
+
+/** fso - fs operation with the path, like Pathname(Ruby) */
+export default new FileSystemObject();
