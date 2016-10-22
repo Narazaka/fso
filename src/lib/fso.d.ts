@@ -3,7 +3,7 @@
 import * as fs from "fs";
 
 /** fs operation with the path, like Pathname(Ruby) */
-declare class FileSystemObject {
+export class FileSystemObject {
   /**
    * @params paths `path.resolve(...paths)`
    */
