@@ -1,4 +1,4 @@
-fso - FileSystemObject
+[fso - FileSystemObject](https://github.com/Narazaka/fso)
 ==========================
 
 [![npm](https://img.shields.io/npm/v/fso.svg)](https://www.npmjs.com/package/fso)
@@ -10,117 +10,157 @@ fso - FileSystemObject
 [![devDependency Status](https://david-dm.org/Narazaka/fso/dev-status.svg)](https://david-dm.org/Narazaka/fso#info=devDependencies)
 [![Travis Build Status](https://travis-ci.org/Narazaka/fso.svg)](https://travis-ci.org/Narazaka/fso)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/Narazaka/fso?svg=true)](https://ci.appveyor.com/project/Narazaka/fso)
+[![codecov.io](https://codecov.io/github/Narazaka/fso/coverage.svg?branch=master)](https://codecov.io/github/Narazaka/fso?branch=master)
 [![Code Climate](https://codeclimate.com/github/Narazaka/fso/badges/gpa.svg)](https://codeclimate.com/github/Narazaka/fso)
 
-Objective 'fs'
+fso - FileSystemObject is a objective fs interface like Pathname(ruby).
 
 Installation
 --------------------------
 
-    npm install fso
-
-    bower install fso
-
-If you want to use Promise in a environment not having build-in Promise, 'bluebird' required.
+```
+npm install fso
+```
 
 Usage
 --------------------------
 
-    var fso = require('fso');
-    var hoge = fso.new('../hoge.txt');
-    var contents = hoge.readFileSync({encoding: 'utf8'});
-    var parent = fso.new('../');
-    parent.childrenAll().then(function(children){
-    	children.forEach(function(child){child.unlinkSync();});
-    });
+```javascript
+var fso = require('fso');
+var hoge = fso.new('../hoge.txt');
+var contents = hoge.readFileSync({encoding: 'utf8'});
+var parent = fso.new('../');
+parent.childrenAll().then(function(children){
+  children.forEach(function(child){child.unlinkSync();});
+});
+```
 
 or use this on the browsers ...
 
-    <script src="browserfs.min.js"></script>
-    <script src="fso.js"></script>
-    ...
-    var fs = reauire('fs');
-    var root = FileSystemObject(fs, '/');
+```html
+<script src="fso.js"></script>
+<script>
+/* BrowserFS init... */
+var fso = require('fso');
+</script>
+```
 
 API
 --------------------------
 
-### 'fs' API
+[API Documents (with type annotations)](https://narazaka.github.io/fso/index.html)
 
-Supports almost all the node.js 'fs' APIs excepts watch*.
+### objective methods
 
-`method(callback)`, `methodSync()` and `promise = method()`
+#### new / join
 
-#### one file args
-
-    fs.truncateSync('/path/to/file', 0);
-    // is
-    file = new FileSystemObject('/path/to/file');
-    file.truncateSync(0);
-
-#### two file args
-
-    fs.rename('/path/to/file', 'newfile', callback);
-    // is
-    file = new FileSystemObject('/path/to/file');
-    file.remane('newfile', callback);
-
-#### fd args
-
-    fd = fs.openSync('/path/to/file');
-    fs.ftruncateSync(fd, 0);
-    fs.close(fd);
-    // is
-    file = new FileSystemObject('/path/to/file');
-    file.openSync();
-    file.ftruncateSync(0);
-    file.close();
-
-### convenient additional
-
-#### mkdirp
-
-    fso.new('long/deep/path/to').mkdirp();
-
-#### mkpath (= mkdirp)
-
-#### readdirAll
-
-    dir.readdirAllSync()
-    // results
-    ['a.txt', 'aa', 'aa/a.txt', 'aa/b', 'aa/b/c.txt']
-
-### objective
-
-#### new
-
-    dir = fso.new('dir');
-    a = dir.new('a.txt');
-    a.writeFileSync('aaaaaa');
+```javascript
+dir = fso.new('dir');
+a = dir.new('a.txt');
+a.writeFileSync('aaaaaa');
+```
 
 #### parent
 
-    dir = fso.new('dir');
-    p = dir.parent();
-    dir = p.new('dir');
+```javascript
+dir = fso.new('dir');
+p = dir.parent();
+dir = p.new('dir');
+```
 
 #### children, childrenSync
 
-    dir = fso.new('dir');
-    files = dir.childrenSync();
+```javascript
+dir = fso.new('dir');
+files = dir.childrenSync();
+```
 
 #### childrenAll, childrenAllSync
 
-    dir = fso.new('dir');
-    files = dir.childrenAllSync();
+```javascript
+dir = fso.new('dir');
+files = dir.childrenAllSync();
+```
 
-### Promised methods
+### 'fs' API
 
-    dir.readdir().then(function(results){
-    	var children = results[0]; // important! : promise method results is wraped by array.
-    });
+Supports all the node.js 'fs' APIs that needs no first path argument.
+
+`method(...args, callback)`, `methodSync(...args)` and `promise = method(...args)`
+
+#### one file args
+
+```javascript
+fs.truncateSync('/path/to/file', 0);
+// is
+file = fso.new('/path/to/file');
+file.truncateSync(0);
+```
+
+#### two file args
+
+```javascript
+fs.rename('/path/to/file', 'newfile', callback);
+// is
+file = fso.new('/path/to/file');
+file.remane('newfile', callback);
+```
+
+#### fd args
+
+```javascript
+fd = fs.openSync('/path/to/file');
+fs.ftruncateSync(fd, 0);
+fs.close(fd);
+// is
+file = fso.new('/path/to/file');
+file.openSync();
+file.ftruncateSync(0);
+file.close();
+```
+
+### convenient additional
+
+#### mkdirAll
+```javascript
+fso.new('long/deep/path/to').mkdirAll().then(...);
+```
+
+#### mkdirp (= mkdirAll)
+
+#### mkpath (= mkdirAll)
+
+#### readdirAll
+```javascript
+dir.readdirAllSync()
+// results
+['a.txt', 'aa', 'aa/a.txt', 'aa/b', 'aa/b/c.txt']
+```
+
+#### rmdirAll
+
+```javascript
+await dir.rmdirAll('junk');
+```
+
+#### rmtree (= rmdirAll)
+
+### path methods
+
+#### basename
+
+```javascript
+fso.new("a/b/c").basename(); // "c"
+```
+
+#### relative
+
+```javascript
+fso.new("a/b/c").relative(fso.new("a/d")); // "../d"
+fso.new("a/b/c").relative("a/d"); // "../d"
+```
 
 License
 --------------------------
 
-This is released under [MIT License](http://narazaka.net/license/MIT?2014).
+This is released under [MIT License](http://narazaka.net/license/MIT?2016).
