@@ -57,18 +57,16 @@ const statsMethods = [
   "isSocket",
 ];
 
-class FileSystemObject {
+export class FileSystemObject {
   constructor(...paths) {
-    this.path = path.resolve(...paths);
+    this.path = path.join(...paths);
   }
 
   toString() {
     return this.path;
   }
 
-  get constants() {
-    return fs.constants;
-  }
+  // fs methods
 
   open(...args) {
     if (args[args.length - 1] instanceof Function) {
@@ -175,19 +173,19 @@ class FileSystemObject {
     if (callback) {
       let children;
       try {
-        children = (await this.childrenAll()).map((child) => this.relative(child));
+        children = (await this.childrenAll()).map((child) => this.relative(child).toString());
       } catch (error) {
         callback(error);
         return;
       }
       callback(undefined, children);
     } else {
-      return (await this.childrenAll()).map((child) => this.relative(child));
+      return (await this.childrenAll()).map((child) => this.relative(child).toString());
     }
   }
 
   readdirAllSync() {
-    return this.childrenAllSync().map((child) => this.relative(child));
+    return this.childrenAllSync().map((child) => this.relative(child).toString());
   }
 
   async rmAll(callback) {
@@ -229,12 +227,48 @@ class FileSystemObject {
 
   // path methods
 
+  get delimiter() {
+    return path.delimiter;
+  }
+
+  get sep() {
+    return path.sep;
+  }
+
+  static format(pathObject) {
+    return new FileSystemObject(path.format(pathObject));
+  }
+
+  parse() {
+    return path.parse(this.path);
+  }
+
+  normalize() {
+    return this;
+  }
+
   basename() {
-    return path.basename(this.path);
+    return new FileSystemObject(path.basename(this.path));
+  }
+
+  dirname() {
+    return this.parent();
+  }
+
+  extname() {
+    return path.extname(this.path);
+  }
+
+  isAbsolute() {
+    return path.isAbsolute(this.path);
   }
 
   relative(to) {
-    return path.relative(this.path, to instanceof FileSystemObject ? to.path : to);
+    return new FileSystemObject(path.relative(this.path, to.toString()));
+  }
+
+  resolve(...paths) {
+    return new FileSystemObject(path.resolve(...paths.map((_path) => _path.toString()).concat([this.path])));
   }
 
   // objective methods
@@ -424,4 +458,4 @@ for (const _method of statsMethods) {
   })(`${_method}Sync`);
 }
 
-module.exports = new FileSystemObject(process.cwd());
+export default new FileSystemObject(process.cwd());

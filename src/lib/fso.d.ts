@@ -1,6 +1,7 @@
 /// <reference path="../../node_modules/@types/node/index.d.ts" />
 
 import * as fs from "fs";
+import * as path from "path";
 
 /** fs operation with the path, like Pathname(Ruby) */
 export class FileSystemObject {
@@ -10,6 +11,7 @@ export class FileSystemObject {
   constructor(...paths: string[]);
 
   readonly path: string;
+  readonly fd: number | undefined;
   toString(): string;
 
   rename(newPath: string, callback: (err?: NodeJS.ErrnoException) => void): void;
@@ -236,8 +238,17 @@ export class FileSystemObject {
   /** like ls -R */
   readdirAllSync(): string[];
 
-  basename(): string;
-  relative(to: string | FileSystemObject): string;
+  delimiter: string;
+  sep: string;
+  static format(pathObject: path.ParsedPath): FileSystemObject;
+  parse(): path.ParsedPath;
+  normalize(): FileSystemObject;
+  basename(): FileSystemObject;
+  dirname(): FileSystemObject;
+  extname(): string;
+  isAbsolute(): boolean;
+  relative(to: string | FileSystemObject): FileSystemObject;
+  resolve(...paths: (string | FileSystemObject)[]): FileSystemObject;
 
   new(...paths: string[]): FileSystemObject;
   join(...paths: string[]): FileSystemObject;
