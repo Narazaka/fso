@@ -25,14 +25,15 @@ npm install fso
 Usage
 --------------------------
 
+node.js:
 ```javascript
-var fso = require('fso');
-var hoge = fso.new('../hoge.txt');
-var contents = hoge.readFileSync({encoding: 'utf8'});
-var parent = fso.new('../');
-parent.childrenAll().then(function(children){
-  children.forEach(function(child){child.unlinkSync();});
-});
+var fso = require('fso').default;
+var FileSystemObject = require('fso').FileSystemObject;
+```
+
+ES2015:
+```javascript
+import fso, {FileSystemObject} from 'fso';
 ```
 
 or use this on the browsers ...
@@ -41,7 +42,8 @@ or use this on the browsers ...
 <script src="fso.js"></script>
 <script>
 /* BrowserFS init... */
-var fso = require('fso');
+var FileSystemObject = fso.FileSystemObject;
+var fso = fso.default;
 </script>
 ```
 
@@ -51,6 +53,13 @@ API
 [API Documents (with type annotations)](https://narazaka.github.io/fso/index.html)
 
 ### objective methods
+
+#### constructor
+
+```javascript
+var abc = new FileSystemObject("a", "b", "c");
+abc.toString() === "a/b/c"
+```
 
 #### new / join
 
@@ -156,17 +165,59 @@ await dir.rmAll('junk');
 
 ### path methods
 
-#### basename
-
+#### (property) delimiter
 ```javascript
-fso.new("a/b/c").basename(); // "c"
+fso.delimiter; // ":" or ";"
+```
+
+#### (property) sep
+```javascript
+fso.sep; // "/" or "\\"
+```
+
+#### (static) format
+```javascript
+var entry = FileSystemObject.format({...});
+```
+
+#### parse
+```javascript
+var parsedObject = fso.new("a").parse();
+```
+
+#### normalize
+```javascript
+fso.new("a").normalize(); // same as fso.new("a")
+```
+
+#### basename
+```javascript
+fso.new("a/b/c").basename(); // same as new FileSystemObject("c")
+```
+
+#### dirname
+same as parent()
+
+#### extname
+```javascript
+fso.new("a/b/c.txt").extname(); // ".txt"
+```
+
+#### isAbsolute
+```javascript
+fso.new("a/b/c.txt").isAbsolute() === true
 ```
 
 #### relative
 
 ```javascript
-fso.new("a/b/c").relative(fso.new("a/d")); // "../d"
-fso.new("a/b/c").relative("a/d"); // "../d"
+fso.new("a/b/c").relative(fso.new("a/d")); // same as new FileSystemObject("../d")
+fso.new("/a/b/c").relative("/a/d"); // same as new FileSystemObject("../d")
+```
+
+#### resolve
+```javascript
+fso.new("a/b/c").resolve("/") // same as new FileSystemObject("/a/b/c")
 ```
 
 License
