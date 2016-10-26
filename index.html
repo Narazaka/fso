@@ -78,24 +78,28 @@
 				<h2 id="installation">Installation</h2>
 				<pre><code>npm <span class="hljs-keyword">install</span> fso
 </code></pre><h2 id="usage">Usage</h2>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> fso = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fso'</span>);
-<span class="hljs-keyword">var</span> hoge = fso.new(<span class="hljs-string">'../hoge.txt'</span>);
-<span class="hljs-keyword">var</span> contents = hoge.readFileSync({<span class="hljs-attr">encoding</span>: <span class="hljs-string">'utf8'</span>});
-<span class="hljs-keyword">var</span> parent = fso.new(<span class="hljs-string">'../'</span>);
-parent.childrenAll().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">children</span>)</span>{
-  children.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">child</span>)</span>{child.unlinkSync();});
-});
+				<p>node.js:</p>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> fso = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fso'</span>).default;
+<span class="hljs-keyword">var</span> FileSystemObject = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fso'</span>).FileSystemObject;
+</code></pre>
+				<p>ES2015:</p>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> fso, {FileSystemObject} <span class="hljs-keyword">from</span> <span class="hljs-string">'fso'</span>;
 </code></pre>
 				<p>or use this on the browsers ...</p>
 				<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"fso.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
 <span class="hljs-comment">/* BrowserFS init... */</span>
-<span class="hljs-keyword">var</span> fso = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fso'</span>);
+<span class="hljs-keyword">var</span> FileSystemObject = fso.FileSystemObject;
+<span class="hljs-keyword">var</span> fso = fso.default;
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
 				<h2 id="api">API</h2>
 				<p><a href="https://narazaka.github.io/fso/index.html">API Documents (with type annotations)</a></p>
 				<h3 id="objective-methods">objective methods</h3>
+				<h4 id="constructor">constructor</h4>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> abc = <span class="hljs-keyword">new</span> FileSystemObject(<span class="hljs-string">"a"</span>, <span class="hljs-string">"b"</span>, <span class="hljs-string">"c"</span>);
+abc.toString() === <span class="hljs-string">"a/b/c"</span>
+</code></pre>
 				<h4 id="new-join">new / join</h4>
 				<pre><code class="lang-javascript">dir = fso.new(<span class="hljs-string">'dir'</span>);
 a = dir.new(<span class="hljs-string">'a.txt'</span>);
@@ -160,12 +164,38 @@ file.close();
 </code></pre>
 				<h4 id="rmtree-rmall-">rmtree (= rmAll)</h4>
 				<h3 id="path-methods">path methods</h3>
+				<h4 id="-property-delimiter">(property) delimiter</h4>
+				<pre><code class="lang-javascript">fso.delimiter; <span class="hljs-comment">// ":" or ";"</span>
+</code></pre>
+				<h4 id="-property-sep">(property) sep</h4>
+				<pre><code class="lang-javascript">fso.sep; <span class="hljs-comment">// "/" or "\\"</span>
+</code></pre>
+				<h4 id="-static-format">(static) format</h4>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> entry = FileSystemObject.format({...});
+</code></pre>
+				<h4 id="parse">parse</h4>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> parsedObject = fso.new(<span class="hljs-string">"a"</span>).parse();
+</code></pre>
+				<h4 id="normalize">normalize</h4>
+				<pre><code class="lang-javascript">fso.new(<span class="hljs-string">"a"</span>).normalize(); <span class="hljs-comment">// same as fso.new("a")</span>
+</code></pre>
 				<h4 id="basename">basename</h4>
-				<pre><code class="lang-javascript">fso.new(<span class="hljs-string">"a/b/c"</span>).basename(); <span class="hljs-comment">// "c"</span>
+				<pre><code class="lang-javascript">fso.new(<span class="hljs-string">"a/b/c"</span>).basename(); <span class="hljs-comment">// same as new FileSystemObject("c")</span>
+</code></pre>
+				<h4 id="dirname">dirname</h4>
+				<p>same as parent()</p>
+				<h4 id="extname">extname</h4>
+				<pre><code class="lang-javascript">fso.new(<span class="hljs-string">"a/b/c.txt"</span>).extname(); <span class="hljs-comment">// ".txt"</span>
+</code></pre>
+				<h4 id="isabsolute">isAbsolute</h4>
+				<pre><code class="lang-javascript">fso.new(<span class="hljs-string">"a/b/c.txt"</span>).isAbsolute() === <span class="hljs-literal">true</span>
 </code></pre>
 				<h4 id="relative">relative</h4>
-				<pre><code class="lang-javascript">fso.new(<span class="hljs-string">"a/b/c"</span>).relative(fso.new(<span class="hljs-string">"a/d"</span>)); <span class="hljs-comment">// "../d"</span>
-fso.new(<span class="hljs-string">"a/b/c"</span>).relative(<span class="hljs-string">"a/d"</span>); <span class="hljs-comment">// "../d"</span>
+				<pre><code class="lang-javascript">fso.new(<span class="hljs-string">"a/b/c"</span>).relative(fso.new(<span class="hljs-string">"a/d"</span>)); <span class="hljs-comment">// same as new FileSystemObject("../d")</span>
+fso.new(<span class="hljs-string">"/a/b/c"</span>).relative(<span class="hljs-string">"/a/d"</span>); <span class="hljs-comment">// same as new FileSystemObject("../d")</span>
+</code></pre>
+				<h4 id="resolve">resolve</h4>
+				<pre><code class="lang-javascript">fso.new(<span class="hljs-string">"a/b/c"</span>).resolve(<span class="hljs-string">"/"</span>) <span class="hljs-comment">// same as new FileSystemObject("/a/b/c")</span>
 </code></pre>
 				<h2 id="license">License</h2>
 				<p>This is released under <a href="http://narazaka.net/license/MIT?2016">MIT License</a>.</p>
