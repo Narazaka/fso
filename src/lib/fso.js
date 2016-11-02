@@ -453,7 +453,7 @@ for (const _method of statsMethods) {
   })(_method);
   FileSystemObject.prototype[`${_method}Sync`] = (function(methodSync) {
     return function() {
-      return this.lstatsSync()[methodSync]();
+      return this.lstatSync()[methodSync]();
     };
   })(`${_method}Sync`);
 }
