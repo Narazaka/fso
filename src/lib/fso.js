@@ -451,11 +451,11 @@ for (const _method of statsMethods) {
       }
     };
   })(_method);
-  FileSystemObject.prototype[`${_method}Sync`] = (function(methodSync) {
+  FileSystemObject.prototype[`${_method}Sync`] = (function(method) {
     return function() {
-      return this.lstatSync()[methodSync]();
+      return this.lstatSync()[method]();
     };
-  })(`${_method}Sync`);
+  })(_method);
 }
 
 export default new FileSystemObject(process.cwd());
