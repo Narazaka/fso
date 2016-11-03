@@ -99,8 +99,24 @@ entries = target.filteredchildrenAllSync(excepts);
 ```
 
 ```javascript
+// Sync
 excepts = (entry) => entry.isDirectorySync();
 files = target.filteredchildrenAllSync(excepts); // childrenSync() minus directories
+```
+
+```javascript
+// Promise form condition also OK when Promise form call
+excepts = (entry) => entry.isDirectory();
+files = await target.filteredchildrenAll(excepts);
+```
+
+```javascript
+// callback form also OK when callback form call
+excepts = (entry, callback) =>
+  entry.isDirectory(
+    (error, isDirectory) => callback(error, isDirectory)
+  );
+target.filteredchildrenAll(excepts, (error, files) => console.log(files.toString()));
 ```
 
 ### path

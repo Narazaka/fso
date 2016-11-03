@@ -352,7 +352,7 @@ export class FileSystemObject {
     if (callback) {
       let children;
       try {
-        children = await FileSystemObject._childrenRecursive(this);
+        children = await FileSystemObject._childrenRecursive(this, undefined, true);
       } catch (error) {
         callback(error);
         return;
@@ -363,12 +363,29 @@ export class FileSystemObject {
     }
   }
 
-  static async _childrenRecursive(dir, excepts) {
-    const children = FileSystemObject._filterChildren(await dir.children(), excepts);
+  static async _childrenRecursive(dir, excepts, hasCallback) {
+    const children = await FileSystemObject._filterChildren(await dir.children(), excepts, hasCallback);
     const childrenChildren = await Promise.all(children.map(async (child) =>
       await child.isDirectory() ? [child].concat(FileSystemObject._childrenRecursive(child, excepts)) : [child]
     ));
     return childrenChildren.reduce((flat, childChildren) => flat.concat(childChildren), []);
+  }
+
+  static async _filterChildren(children, excepts, hasCallback) {
+    if (!excepts) {
+      return children;
+    } else if (excepts instanceof Array) {
+      return FileSystemObject._filterChildrenByPaths(children, excepts);
+    } else {
+      const conditions = await Promise.all(
+        hasCallback
+          ? children.map((child) => new Promise((resolve, reject) =>
+            excepts(child, (error, condition) => error ? reject(error) : resolve(condition)))
+          )
+          : children.map(excepts)
+      );
+      return children.filter((child, index) => conditions[index]);
+    }
   }
 
   childrenAllSync() {
@@ -376,14 +393,14 @@ export class FileSystemObject {
   }
 
   static _childrenRecursiveSync(dir, excepts) {
-    const children = FileSystemObject._filterChildren(dir.childrenSync(), excepts);
+    const children = FileSystemObject._filterChildrenSync(dir.childrenSync(), excepts);
     const childrenChildren = children.map((child) =>
       child.isDirectorySync() ? [child].concat(FileSystemObject._childrenRecursiveSync(child, excepts)) : [child]
     );
     return childrenChildren.reduce((flat, childChildren) => flat.concat(childChildren), []);
   }
 
-  static _filterChildren(children, excepts) {
+  static _filterChildrenSync(children, excepts) {
     if (!excepts) {
       return children;
     } else if (excepts instanceof Array) {
@@ -410,7 +427,7 @@ export class FileSystemObject {
     if (callback) {
       let children;
       try {
-        children = await FileSystemObject._childrenRecursive(this, _excepts);
+        children = await FileSystemObject._childrenRecursive(this, _excepts, true);
       } catch (error) {
         callback(error);
         return;

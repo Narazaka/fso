@@ -240,8 +240,8 @@ export class FileSystemObject {
   mergeDirectory(source: FileSystemObject, callback: (err?: NodeJS.ErrnoException) => void): void;
   mergeDirectory(source: FileSystemObject): Promise<void>;
   mergeDirectorySync(source: FileSystemObject): void;
-  filteredMergeDirectory(source: FileSystemObject, excepts: string[] | ((path: FileSystemObject) => boolean) | undefined, callback: (err?: NodeJS.ErrnoException) => void): void;
-  filteredMergeDirectory(source: FileSystemObject, excepts?: string[] | ((path: FileSystemObject) => boolean)): Promise<void>;
+  filteredMergeDirectory(source: FileSystemObject, excepts: string[] | ((path: FileSystemObject, callback: (err: Error | undefined | null, condition: boolean) => void) => void) | undefined, callback: (err?: NodeJS.ErrnoException) => void): void;
+  filteredMergeDirectory(source: FileSystemObject, excepts?: string[] | ((path: FileSystemObject) => Promise<boolean>)): Promise<void>;
   filteredMergeDirectorySync(source: FileSystemObject, excepts?: string[] | ((path: FileSystemObject) => boolean)): void;
   isChildOf(to: string | FileSystemObject): boolean;
   isParentOf(to: string | FileSystemObject): boolean;
@@ -267,8 +267,8 @@ export class FileSystemObject {
   childrenAll(callback: (err: NodeJS.ErrnoException, children: FileSystemObject[]) => void): void;
   childrenAll(): Promise<FileSystemObject[]>;
   childrenAllSync(): FileSystemObject[];
-  filteredChildrenAll(excepts: string[] | ((path: FileSystemObject) => boolean) | undefined, callback: (err: NodeJS.ErrnoException, children: FileSystemObject[]) => void): void;
-  filteredChildrenAll(excepts?: string[] | ((path: FileSystemObject) => boolean)): Promise<FileSystemObject[]>;
+  filteredChildrenAll(excepts: string[] | ((path: FileSystemObject, callback: (err: Error | undefined | null, condition: boolean) => void) => void) | undefined, callback: (err: NodeJS.ErrnoException, children: FileSystemObject[]) => void): void;
+  filteredChildrenAll(excepts?: string[] | ((path: FileSystemObject) => Promise<boolean>)): Promise<FileSystemObject[]>;
   filteredChildrenAllSync(excepts?: string[] | ((path: FileSystemObject) => boolean)): FileSystemObject[];
 }
 
