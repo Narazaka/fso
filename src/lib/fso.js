@@ -57,6 +57,8 @@ const statsMethods = [
   "isSocket",
 ];
 
+const childRe = new RegExp(`^\\.\\.(?:\\${path.sep}\\.\\.)*$`);
+
 export class FileSystemObject {
   constructor(...paths) {
     this.path = path.join(...paths);
@@ -226,7 +228,12 @@ export class FileSystemObject {
   }
 
   isChildOf(to) {
-    return path.relative(this.path, to.toString()).startsWith("..");
+    return childRe.test(path.relative(this.path, to.toString()));
+  }
+
+  isParentOf(to) {
+    const relativePath = path.relative(this.path, to.toString());
+    return relativePath.length && !relativePath.startsWith("..");
   }
 
   // path methods

@@ -238,6 +238,7 @@ export class FileSystemObject {
   /** like ls -R */
   readdirAllSync(): string[];
   isChildOf(to: string | FileSystemObject): boolean;
+  isParentOf(to: string | FileSystemObject): boolean;
 
   delimiter: string;
   sep: string;
