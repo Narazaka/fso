@@ -237,6 +237,7 @@ export class FileSystemObject {
   readdirAll(): Promise<string[]>;
   /** like ls -R */
   readdirAllSync(): string[];
+  isChildOf(to: string | FileSystemObject): boolean;
 
   delimiter: string;
   sep: string;

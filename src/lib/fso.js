@@ -225,6 +225,10 @@ export class FileSystemObject {
     return this.rmAllSync();
   }
 
+  isChildOf(to) {
+    return path.relative(this.path, to.toString()).startsWith("..");
+  }
+
   // path methods
 
   get delimiter() {
