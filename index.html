@@ -118,6 +118,13 @@ files = dir.childrenSync();
 				<pre><code class="lang-javascript">dir = fso.new(<span class="hljs-string">'dir'</span>);
 files = dir.childrenAllSync();
 </code></pre>
+				<h4 id="filteredchildrenall-filteredchildrenallsync">filteredchildrenAll, filteredchildrenAllSync</h4>
+				<pre><code class="lang-javascript">excepts = [<span class="hljs-string">"ignore_file"</span>, <span class="hljs-string">"path/to/ignore_directory"</span>];
+entries = target.filteredchildrenAllSync(excepts);
+</code></pre>
+				<pre><code class="lang-javascript">excepts = <span class="hljs-function">(<span class="hljs-params">entry</span>) =&gt;</span> entry.isDirectorySync();
+files = target.filteredchildrenAllSync(excepts); <span class="hljs-comment">// childrenSync() minus directories</span>
+</code></pre>
 				<h3 id="path">path</h3>
 				<h4 id="path-tostring">path / toString</h4>
 				<pre><code class="lang-javascript">fooPath = fso.new(<span class="hljs-string">'foo'</span>).path;
@@ -163,6 +170,26 @@ file.close();
 				<pre><code class="lang-javascript"><span class="hljs-keyword">await</span> dir.rmAll(<span class="hljs-string">'junk'</span>);
 </code></pre>
 				<h4 id="rmtree-rmall-">rmtree (= rmAll)</h4>
+				<h4 id="mergedirectory">mergeDirectory</h4>
+				<pre><code class="lang-javascript">target.mergeDirectory(source);
+</code></pre>
+				<p>copy:</p>
+				<pre><code class="lang-javascript">target.rmAllSync();
+target.mergeDirectorySync(source);
+</code></pre>
+				<h4 id="filteredmergedirectory">filteredMergeDirectory</h4>
+				<pre><code class="lang-javascript">excepts = [<span class="hljs-string">"ignore_file"</span>, <span class="hljs-string">"path/to/ignore_directory"</span>];
+target.filteredMergeDirectorySync(source, excepts);
+</code></pre>
+				<pre><code class="lang-javascript">excepts = <span class="hljs-function">(<span class="hljs-params">entry</span>) =&gt;</span> entry.path === <span class="hljs-string">"ignore_file"</span> || entry.path === <span class="hljs-string">"path/to/ignore_directory"</span>;
+target.filteredMergeDirectorySync(source, excepts);
+</code></pre>
+				<h4 id="ischildof">isChildOf</h4>
+				<pre><code class="lang-javascript">dir.new(<span class="hljs-string">"foo/bar"</span>).isChildOf(dir)
+</code></pre>
+				<h4 id="isparentof">isParentOf</h4>
+				<pre><code class="lang-javascript">dir.isParentOf(dir.new(<span class="hljs-string">"foo/bar"</span>))
+</code></pre>
 				<h3 id="path-methods">path methods</h3>
 				<h4 id="-property-delimiter">(property) delimiter</h4>
 				<pre><code class="lang-javascript">fso.delimiter; <span class="hljs-comment">// ":" or ";"</span>
