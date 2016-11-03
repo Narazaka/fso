@@ -122,8 +122,20 @@ files = dir.childrenAllSync();
 				<pre><code class="lang-javascript">excepts = [<span class="hljs-string">"ignore_file"</span>, <span class="hljs-string">"path/to/ignore_directory"</span>];
 entries = target.filteredchildrenAllSync(excepts);
 </code></pre>
-				<pre><code class="lang-javascript">excepts = <span class="hljs-function">(<span class="hljs-params">entry</span>) =&gt;</span> entry.isDirectorySync();
+				<pre><code class="lang-javascript"><span class="hljs-comment">// Sync</span>
+excepts = <span class="hljs-function">(<span class="hljs-params">entry</span>) =&gt;</span> entry.isDirectorySync();
 files = target.filteredchildrenAllSync(excepts); <span class="hljs-comment">// childrenSync() minus directories</span>
+</code></pre>
+				<pre><code class="lang-javascript"><span class="hljs-comment">// Promise form condition also OK when Promise form call</span>
+excepts = <span class="hljs-function">(<span class="hljs-params">entry</span>) =&gt;</span> entry.isDirectory();
+files = <span class="hljs-keyword">await</span> target.filteredchildrenAll(excepts);
+</code></pre>
+				<pre><code class="lang-javascript"><span class="hljs-comment">// callback form also OK when callback form call</span>
+excepts = <span class="hljs-function">(<span class="hljs-params">entry, callback</span>) =&gt;</span>
+  entry.isDirectory(
+    <span class="hljs-function">(<span class="hljs-params">error, isDirectory</span>) =&gt;</span> callback(error, isDirectory)
+  );
+target.filteredchildrenAll(excepts, (error, files) =&gt; <span class="hljs-built_in">console</span>.log(files.toString()));
 </code></pre>
 				<h3 id="path">path</h3>
 				<h4 id="path-tostring">path / toString</h4>
