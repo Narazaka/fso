@@ -237,6 +237,12 @@ export class FileSystemObject {
   readdirAll(): Promise<string[]>;
   /** like ls -R */
   readdirAllSync(): string[];
+  mergeDirectory(source: FileSystemObject, callback: (err?: NodeJS.ErrnoException) => void): void;
+  mergeDirectory(source: FileSystemObject): Promise<void>;
+  mergeDirectorySync(source: FileSystemObject): void;
+  filteredMergeDirectory(source: FileSystemObject, excepts: string[] | ((path: FileSystemObject) => boolean) | undefined, callback: (err?: NodeJS.ErrnoException) => void): void;
+  filteredMergeDirectory(source: FileSystemObject, excepts?: string[] | ((path: FileSystemObject) => boolean)): Promise<void>;
+  filteredMergeDirectorySync(source: FileSystemObject, excepts?: string[] | ((path: FileSystemObject) => boolean)): void;
   isChildOf(to: string | FileSystemObject): boolean;
   isParentOf(to: string | FileSystemObject): boolean;
 
@@ -261,6 +267,9 @@ export class FileSystemObject {
   childrenAll(callback: (err: NodeJS.ErrnoException, children: FileSystemObject[]) => void): void;
   childrenAll(): Promise<FileSystemObject[]>;
   childrenAllSync(): FileSystemObject[];
+  filteredChildrenAll(excepts: string[] | ((path: FileSystemObject) => boolean) | undefined, callback: (err?: NodeJS.ErrnoException) => void): void;
+  filteredChildrenAll(excepts?: string[] | ((path: FileSystemObject) => boolean)): Promise<void>;
+  filteredChildrenAllSync(excepts?: string[] | ((path: FileSystemObject) => boolean)): void;
 }
 
 /** fso - fs operation with the path, like Pathname(Ruby) */

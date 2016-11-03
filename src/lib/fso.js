@@ -227,6 +227,39 @@ export class FileSystemObject {
     return this.rmAllSync();
   }
 
+  async mergeDirectory(source, callback) {
+    await this.filteredMergeDirectory(source, undefined, callback);
+  }
+
+  mergeDirectorySync(source) {
+    this.filteredMergeDirectorySync(source);
+  }
+
+  async filteredMergeDirectory(source, excepts, callback) {
+    try {
+      for (const child of await source.filteredChildrenAll(source, excepts)) {
+        const relativePath = source.relative(child.toString());
+        const childTarget = this.new(relativePath.toString());
+        await child.isDirectory() ? await childTarget.mkdir() : await childTarget.writeFile(await child.readFile());
+      }
+    } catch (error) {
+      if (callback) {
+        callback(error);
+        return;
+      }
+      throw error;
+    }
+    if (callback) callback();
+  }
+
+  filteredMergeDirectorySync(source, excepts) {
+    for (const child of source.filteredChildrenAllSync(source, excepts)) {
+      const relativePath = source.relative(child.toString());
+      const childTarget = this.new(relativePath.toString());
+      child.isDirectorySync() ? childTarget.mkdirSync() : childTarget.writeFileSync(child.readFileSync());
+    }
+  }
+
   isChildOf(to) {
     return childRe.test(path.relative(this.path, to.toString()));
   }
@@ -330,10 +363,10 @@ export class FileSystemObject {
     }
   }
 
-  static async _childrenRecursive(dir) {
-    const children = await dir.children();
+  static async _childrenRecursive(dir, excepts) {
+    const children = FileSystemObject._filterChildren(await dir.children(), excepts);
     const childrenChildren = await Promise.all(children.map(async (child) =>
-      await child.isDirectory() ? [child].concat(FileSystemObject._childrenRecursive(child)) : [child]
+      await child.isDirectory() ? [child].concat(FileSystemObject._childrenRecursive(child, excepts)) : [child]
     ));
     return childrenChildren.reduce((flat, childChildren) => flat.concat(childChildren), []);
   }
@@ -342,12 +375,59 @@ export class FileSystemObject {
     return FileSystemObject._childrenRecursiveSync(this);
   }
 
-  static _childrenRecursiveSync(dir) {
-    const children = dir.childrenSync();
+  static _childrenRecursiveSync(dir, excepts) {
+    const children = FileSystemObject._filterChildren(dir.childrenSync(), excepts);
     const childrenChildren = children.map((child) =>
-      child.isDirectorySync() ? [child].concat(FileSystemObject._childrenRecursiveSync(child)) : [child]
+      child.isDirectorySync() ? [child].concat(FileSystemObject._childrenRecursiveSync(child, excepts)) : [child]
     );
     return childrenChildren.reduce((flat, childChildren) => flat.concat(childChildren), []);
+  }
+
+  static _filterChildren(children, excepts) {
+    if (!excepts) {
+      return children;
+    } else if (excepts instanceof Array) {
+      return FileSystemObject._filterChildrenByPaths(children, excepts);
+    } else {
+      return children.filter(excepts);
+    }
+  }
+
+  static _filterChildrenByPaths(children, exceptPaths) {
+    return children.filter((child) => {
+      const index = exceptPaths.findIndex(child.path);
+      if (index === -1) {
+        return true;
+      } else {
+        exceptPaths.splice(index, 1); // destructive
+        return false;
+      }
+    });
+  }
+
+  async filteredChildrenAll(excepts, callback) {
+    const _excepts = excepts instanceof Array ? this._makeExceptPaths(excepts) : excepts;
+    if (callback) {
+      let children;
+      try {
+        children = await FileSystemObject._childrenRecursive(this, _excepts);
+      } catch (error) {
+        callback(error);
+        return;
+      }
+      callback(undefined, children);
+    } else {
+      return FileSystemObject._childrenRecursive(this, _excepts);
+    }
+  }
+
+  filteredChildrenAllSync(excepts) {
+    const _excepts = excepts instanceof Array ? this._makeExceptPaths(excepts) : excepts;
+    return FileSystemObject._childrenRecursiveSync(this, _excepts);
+  }
+
+  _makeExceptPaths(exceptPaths) {
+    return exceptPaths.map((exceptPath) => path.join(this.path, exceptPath.toString()));
   }
 }
 
