@@ -21,9 +21,7 @@
     "test": "mocha",
     "doc": "rm -rf tmpdoc && typedoc --mode file --out tmpdoc --includeDeclarations --excludeExternals src && mv doc/.git tmpdoc/.git && rm -rf doc && mv tmpdoc doc"
   },
-  "dependencies": {
-    "@types/node": "^6.0.45"
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-core": "^6.17.0",
     "babel-eslint": "^7.0.0",
