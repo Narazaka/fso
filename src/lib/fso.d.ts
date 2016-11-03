@@ -264,6 +264,9 @@ export class FileSystemObject {
   children(callback: (err: NodeJS.ErrnoException, children: FileSystemObject[]) => void): void;
   children(): Promise<FileSystemObject[]>;
   childrenSync(): FileSystemObject[];
+  filteredChildren(excepts: string[] | ((path: FileSystemObject, callback: (err: Error | undefined | null, condition: boolean) => void) => void) | undefined, callback: (err: NodeJS.ErrnoException, children: FileSystemObject[]) => void): void;
+  filteredChildren(excepts?: string[] | ((path: FileSystemObject) => Promise<boolean>)): Promise<FileSystemObject[]>;
+  filteredChildrenSync(excepts?: string[] | ((path: FileSystemObject) => boolean)): FileSystemObject[];
   childrenAll(callback: (err: NodeJS.ErrnoException, children: FileSystemObject[]) => void): void;
   childrenAll(): Promise<FileSystemObject[]>;
   childrenAllSync(): FileSystemObject[];

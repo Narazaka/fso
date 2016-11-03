@@ -91,23 +91,23 @@ dir = fso.new('dir');
 files = dir.childrenAllSync();
 ```
 
-#### filteredchildrenAll, filteredchildrenAllSync
+#### filteredChildren, filteredChildrenSync, filteredChildrenAll, filteredChildrenAllSync
 
 ```javascript
 excepts = ["ignore_file", "path/to/ignore_directory"];
-entries = target.filteredchildrenAllSync(excepts);
+entries = target.filteredChildrenAllSync(excepts);
 ```
 
 ```javascript
 // Sync
 excepts = (entry) => entry.isDirectorySync();
-files = target.filteredchildrenAllSync(excepts); // childrenSync() minus directories
+files = target.filteredChildrenAllSync(excepts); // childrenSync() minus directories
 ```
 
 ```javascript
 // Promise form condition also OK when Promise form call
 excepts = (entry) => entry.isDirectory();
-files = await target.filteredchildrenAll(excepts);
+files = await target.filteredChildrenAll(excepts);
 ```
 
 ```javascript
@@ -116,7 +116,7 @@ excepts = (entry, callback) =>
   entry.isDirectory(
     (error, isDirectory) => callback(error, isDirectory)
   );
-target.filteredchildrenAll(excepts, (error, files) => console.log(files.toString()));
+target.filteredChildrenAll(excepts, (error, files) => console.log(files.toString()));
 ```
 
 ### path

@@ -348,6 +348,27 @@ export class FileSystemObject {
     return this.readdirSync().map((entryPath) => this.new(entryPath));
   }
 
+  async filteredChildren(excepts, callback) {
+    const _excepts = excepts instanceof Array ? this._makeExceptPaths(excepts) : excepts;
+    if (callback) {
+      let children;
+      try {
+        children = await FileSystemObject._filterChildren(await this.children(), _excepts, true);
+      } catch (error) {
+        callback(error);
+        return;
+      }
+      callback(undefined, children);
+    } else {
+      return await FileSystemObject._filterChildren(await this.children(), _excepts);
+    }
+  }
+
+  filteredChildrenSync(excepts) {
+    const _excepts = excepts instanceof Array ? this._makeExceptPaths(excepts) : excepts;
+    return FileSystemObject._filterChildrenSync(this.childrenSync(), _excepts);
+  }
+
   async childrenAll(callback) {
     if (callback) {
       let children;
