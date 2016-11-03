@@ -267,9 +267,9 @@ export class FileSystemObject {
   childrenAll(callback: (err: NodeJS.ErrnoException, children: FileSystemObject[]) => void): void;
   childrenAll(): Promise<FileSystemObject[]>;
   childrenAllSync(): FileSystemObject[];
-  filteredChildrenAll(excepts: string[] | ((path: FileSystemObject) => boolean) | undefined, callback: (err?: NodeJS.ErrnoException) => void): void;
-  filteredChildrenAll(excepts?: string[] | ((path: FileSystemObject) => boolean)): Promise<void>;
-  filteredChildrenAllSync(excepts?: string[] | ((path: FileSystemObject) => boolean)): void;
+  filteredChildrenAll(excepts: string[] | ((path: FileSystemObject) => boolean) | undefined, callback: (err: NodeJS.ErrnoException, children: FileSystemObject[]) => void): void;
+  filteredChildrenAll(excepts?: string[] | ((path: FileSystemObject) => boolean)): Promise<FileSystemObject[]>;
+  filteredChildrenAllSync(excepts?: string[] | ((path: FileSystemObject) => boolean)): FileSystemObject[];
 }
 
 /** fso - fs operation with the path, like Pathname(Ruby) */
