@@ -91,6 +91,18 @@ dir = fso.new('dir');
 files = dir.childrenAllSync();
 ```
 
+#### filteredchildrenAll, filteredchildrenAllSync
+
+```javascript
+excepts = ["ignore_file", "path/to/ignore_directory"];
+entries = target.filteredchildrenAllSync(excepts);
+```
+
+```javascript
+excepts = (entry) => entry.isDirectorySync();
+files = target.filteredchildrenAllSync(excepts); // childrenSync() minus directories
+```
+
 ### path
 
 #### path / toString
@@ -162,6 +174,43 @@ await dir.rmAll('junk');
 ```
 
 #### rmtree (= rmAll)
+
+#### mergeDirectory
+
+```javascript
+target.mergeDirectory(source);
+```
+
+copy:
+
+```javascript
+target.rmAllSync();
+target.mergeDirectorySync(source);
+```
+
+#### filteredMergeDirectory
+
+```javascript
+excepts = ["ignore_file", "path/to/ignore_directory"];
+target.filteredMergeDirectorySync(source, excepts);
+```
+
+```javascript
+excepts = (entry) => entry.path === "ignore_file" || entry.path === "path/to/ignore_directory";
+target.filteredMergeDirectorySync(source, excepts);
+```
+
+#### isChildOf
+
+```javascript
+dir.new("foo/bar").isChildOf(dir)
+```
+
+#### isParentOf
+
+```javascript
+dir.isParentOf(dir.new("foo/bar"))
+```
 
 ### path methods
 
