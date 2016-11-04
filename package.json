@@ -1,6 +1,6 @@
 {
   "name": "fso",
-  "version": "2.5.2",
+  "version": "2.5.3",
   "description": "fso - FileSystemObject is a objective fs interface like Pathname(ruby)",
   "keywords": [
     "fs",
@@ -21,8 +21,7 @@
     "test": "mocha",
     "doc": "rm -rf tmpdoc && typedoc --mode file --out tmpdoc --includeDeclarations --excludeExternals src && mv doc/.git tmpdoc/.git && rm -rf doc && mv tmpdoc doc"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^6.0.46",
     "babel-core": "^6.17.0",
