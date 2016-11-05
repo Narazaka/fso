@@ -19,7 +19,8 @@
     "node": "webpack",
     "web": "webpack --config ./webpack.config.web.js",
     "test": "mocha",
-    "doc": "rm -rf tmpdoc && typedoc --mode file --out tmpdoc --includeDeclarations --excludeExternals src && mv doc/.git tmpdoc/.git && rm -rf doc && mv tmpdoc doc"
+    "docdist": "cd doc && git rm -rf * && cd .. && typedoc --mode file --out doc --disableOutputCheck --includeDeclarations --excludeExternals --excludeNotExported src && cd doc && git add . && git commit -m doc",
+    "doc": "typedoc --mode file --out doc --disableOutputCheck --includeDeclarations --excludeExternals --excludeNotExported src"
   },
   "dependencies": {},
   "devDependencies": {
