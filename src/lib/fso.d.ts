@@ -6,7 +6,7 @@ import * as path from "path";
 /** fs operation with the path, like Pathname(Ruby) */
 export class FileSystemObject {
   /**
-   * @params paths `path.resolve(...paths)`
+   * @param paths `path.resolve(...paths)`
    */
   constructor(...paths: string[]);
 
