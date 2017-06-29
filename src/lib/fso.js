@@ -237,7 +237,7 @@ export class FileSystemObject {
 
   async filteredMergeDirectory(source, excepts, callback) {
     try {
-      for (const child of await source.filteredChildrenAll(source, excepts)) {
+      for (const child of await source.filteredChildrenAll(excepts)) {
         const relativePath = source.relative(child.toString());
         const childTarget = this.new(relativePath.toString());
         await child.isDirectory() ? await childTarget.mkdir() : await childTarget.writeFile(await child.readFile());
@@ -253,7 +253,7 @@ export class FileSystemObject {
   }
 
   filteredMergeDirectorySync(source, excepts) {
-    for (const child of source.filteredChildrenAllSync(source, excepts)) {
+    for (const child of source.filteredChildrenAllSync(excepts)) {
       const relativePath = source.relative(child.toString());
       const childTarget = this.new(relativePath.toString());
       child.isDirectorySync() ? childTarget.mkdirSync() : childTarget.writeFileSync(child.readFileSync());
