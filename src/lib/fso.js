@@ -210,7 +210,7 @@ export class FileSystemObject {
   }
 
   rmAllSync() {
-    for (const child of this.childrenAllSync()) {
+    for (const child of this.childrenAllSync().reverse()) {
       if (child.isDirectorySync()) {
         child.rmdirSync();
       } else {
