@@ -235,11 +235,13 @@ export class FileSystemObject {
     this.filteredMergeDirectorySync(source);
   }
 
+  // eslint-disable-next-line max-statements
   async filteredMergeDirectory(source, excepts, callback) {
     try {
       for (const child of await source.filteredChildrenAll(excepts)) {
         const relativePath = source.relative(child.toString());
         const childTarget = this.new(relativePath.toString());
+        await childTarget.parent().mkdirp();
         await child.isDirectory() ? await childTarget.mkdir() : await childTarget.writeFile(await child.readFile());
       }
     } catch (error) {
@@ -256,6 +258,7 @@ export class FileSystemObject {
     for (const child of source.filteredChildrenAllSync(excepts)) {
       const relativePath = source.relative(child.toString());
       const childTarget = this.new(relativePath.toString());
+      childTarget.parent().mkdirpSync();
       child.isDirectorySync() ? childTarget.mkdirSync() : childTarget.writeFileSync(child.readFileSync());
     }
   }
