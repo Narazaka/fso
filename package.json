@@ -15,6 +15,7 @@
     "web"
   ],
   "scripts": {
+    "prepublish": "npm run dist",
     "dist": "npm run node && npm run web",
     "node": "webpack",
     "web": "webpack --config ./webpack.config.web.js",
