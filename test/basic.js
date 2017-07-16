@@ -161,7 +161,7 @@ describe("fdMethods + fdMultiReturnMethods", () => {
   const fd = 111;
   beforeEach(() => {
     helper.stubEach(fdMethodsAndfdMultiReturnMethods);
-    sinon.stub(fs, "openSync", () => fd);
+    sinon.stub(fs, "openSync").callsFake(() => fd);
   });
   afterEach(() => {
     helper.restoreEach(fdMethodsAndfdMultiReturnMethods);
@@ -204,8 +204,8 @@ describe("open", () => {
   const method = "open";
   const fd = 111;
   beforeEach(() => {
-    sinon.stub(fs, method, (...args) => args[args.length - 1](undefined, fd));
-    sinon.stub(fs, `${method}Sync`, () => fd);
+    sinon.stub(fs, method).callsFake((...args) => args[args.length - 1](undefined, fd));
+    sinon.stub(fs, `${method}Sync`).callsFake(() => fd);
   });
   afterEach(() => {
     fs[method].restore();
