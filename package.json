@@ -41,7 +41,7 @@
     "power-assert": "^1.4.4",
     "sinon": "^2.3.8",
     "typedoc": "^0.7.1",
-    "webpack": "^1.13.2"
+    "webpack": "^3.3.0"
   },
   "author": {
     "name": "narazaka",

@@ -3,17 +3,16 @@ const path = require("path");
 
 module.exports = {
   module: {
-    preLoaders: [
+    rules: [
       {
         test:    /\.js$/,
-        loader:  "eslint",
+        loader:  "eslint-loader",
         exclude: /node_modules/,
+        enforce: "pre",
       },
-    ],
-    loaders: [
       {
         test:    /\.js$/,
-        loader:  "babel",
+        loader:  "babel-loader",
         exclude: /node_modules/,
       },
     ],
@@ -27,7 +26,6 @@ module.exports = {
     libraryTarget: "commonjs2",
   },
   plugins: [
-    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
   ],
   devtool: "source-map",
