@@ -1,6 +1,8 @@
 [fso - FileSystemObject](https://github.com/Narazaka/fso)
 ==========================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Narazaka/fso.svg)](https://greenkeeper.io/)
+
 [![npm](https://img.shields.io/npm/v/fso.svg)](https://www.npmjs.com/package/fso)
 [![npm license](https://img.shields.io/npm/l/fso.svg)](https://www.npmjs.com/package/fso)
 [![npm download total](https://img.shields.io/npm/dt/fso.svg)](https://www.npmjs.com/package/fso)
