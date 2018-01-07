@@ -9,8 +9,8 @@ const singlePathMethods = [
   "chmod",
   "chown",
   "exists",
-//  "lchmod", // only Mac
-//  "lchown", // only Mac
+  // "lchmod", // only Mac
+  // "lchown", // only Mac
   "lstat",
   "mkdir",
   "readdir",

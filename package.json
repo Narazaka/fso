@@ -20,6 +20,7 @@
     "node": "webpack",
     "web": "webpack --config ./webpack.config.web.js",
     "test": "mocha",
+    "lint": "eslint src test",
     "docdist": "cd doc && git clean -fd && git rm -rf * && cd .. && npm run doc && cd doc && touch .nojekyll && git add . && git commit -m doc && git push",
     "doc": "typedoc --mode file --out doc --disableOutputCheck --includeDeclarations --excludeExternals --excludeNotExported src && cd doc && git status && cd .."
   },
