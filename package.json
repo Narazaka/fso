@@ -19,7 +19,7 @@
     "dist": "npm run node && npm run web",
     "node": "webpack",
     "web": "webpack --config ./webpack.config.web.js",
-    "test": "mocha",
+    "test": "nyc mocha",
     "lint": "eslint src test",
     "docdist": "cd doc && git clean -fd && git rm -rf * && cd .. && npm run doc && cd doc && touch .nojekyll && git add . && git commit -m doc && git push",
     "doc": "typedoc --mode file --out doc --disableOutputCheck --includeDeclarations --excludeExternals --excludeNotExported src && cd doc && git status && cd .."
@@ -39,6 +39,7 @@
     "eslint-config-narazaka": "^1.0.0",
     "eslint-loader": "^1.9.0",
     "mocha": "^4.1.0",
+    "nyc": "^11.4.1",
     "power-assert": "^1.4.4",
     "sinon": "^4.1.3",
     "typedoc": "^0.9.0",
