@@ -1,6 +1,7 @@
 [fso - FileSystemObject](https://github.com/Narazaka/fso)
 ==========================
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b0ffe17aa40b41a7a446f4d70808228f)](https://www.codacy.com/app/narazaka/fso?utm_source=github.com&utm_medium=referral&utm_content=Narazaka/fso&utm_campaign=badger)
 [![Greenkeeper badge](https://badges.greenkeeper.io/Narazaka/fso.svg)](https://greenkeeper.io/)
 
 [![npm](https://img.shields.io/npm/v/fso.svg)](https://www.npmjs.com/package/fso)
