@@ -1,20 +1,20 @@
 [fso - FileSystemObject](https://github.com/Narazaka/fso)
 ==========================
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b0ffe17aa40b41a7a446f4d70808228f)](https://www.codacy.com/app/narazaka/fso?utm_source=github.com&utm_medium=referral&utm_content=Narazaka/fso&utm_campaign=badger)
-[![Greenkeeper badge](https://badges.greenkeeper.io/Narazaka/fso.svg)](https://greenkeeper.io/)
 
 [![npm](https://img.shields.io/npm/v/fso.svg)](https://www.npmjs.com/package/fso)
 [![npm license](https://img.shields.io/npm/l/fso.svg)](https://www.npmjs.com/package/fso)
 [![npm download total](https://img.shields.io/npm/dt/fso.svg)](https://www.npmjs.com/package/fso)
 [![npm download by month](https://img.shields.io/npm/dm/fso.svg)](https://www.npmjs.com/package/fso)
+[![dependencies Status](https://david-dm.org/Narazaka/fso/status.svg)](https://david-dm.org/Narazaka/fso)
+[![devDependencies Status](https://david-dm.org/Narazaka/fso/dev-status.svg)](https://david-dm.org/Narazaka/fso?type=dev)
 
-[![Dependency Status](https://david-dm.org/Narazaka/fso.svg)](https://david-dm.org/Narazaka/fso)
-[![devDependency Status](https://david-dm.org/Narazaka/fso/dev-status.svg)](https://david-dm.org/Narazaka/fso#info=devDependencies)
-[![Travis Build Status](https://travis-ci.org/Narazaka/fso.svg)](https://travis-ci.org/Narazaka/fso)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/Narazaka/fso?svg=true)](https://ci.appveyor.com/project/Narazaka/fso)
+[![Travis Build Status](https://travis-ci.org/Narazaka/fso.svg?branch=master)](https://travis-ci.org/Narazaka/fso)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/Narazaka/fso?svg=true&branch=master)](https://ci.appveyor.com/project/Narazaka/fso)
 [![codecov.io](https://codecov.io/github/Narazaka/fso/coverage.svg?branch=master)](https://codecov.io/github/Narazaka/fso?branch=master)
 [![Code Climate](https://codeclimate.com/github/Narazaka/fso/badges/gpa.svg)](https://codeclimate.com/github/Narazaka/fso)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b0ffe17aa40b41a7a446f4d70808228f)](https://www.codacy.com/app/narazaka/fso?utm_source=github.com&utm_medium=referral&utm_content=Narazaka/fso&utm_campaign=badger)
+[![Greenkeeper badge](https://badges.greenkeeper.io/Narazaka/fso.svg)](https://greenkeeper.io/)
 
 fso - FileSystemObject is a objective fs interface like Pathname(ruby).
 
