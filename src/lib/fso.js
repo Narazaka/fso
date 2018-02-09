@@ -390,7 +390,7 @@ export class FileSystemObject {
   static async _childrenRecursive(dir, excepts, hasCallback) {
     const children = await FileSystemObject._filterChildren(await dir.children(), excepts, hasCallback);
     const childrenChildren = await Promise.all(children.map(async (child) =>
-      await child.isDirectory() ? [child].concat(FileSystemObject._childrenRecursive(child, excepts)) : [child]
+      await child.isDirectory() ? [child].concat(await FileSystemObject._childrenRecursive(child, excepts)) : [child]
     ));
     return childrenChildren.reduce((flat, childChildren) => flat.concat(childChildren), []);
   }
