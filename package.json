@@ -1,6 +1,6 @@
 {
   "name": "fso",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "description": "fso - FileSystemObject is a objective fs interface like Pathname(ruby)",
   "keywords": [
     "fs",
