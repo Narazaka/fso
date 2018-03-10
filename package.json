@@ -15,7 +15,8 @@
     "web"
   ],
   "scripts": {
-    "prepublish": "npm run dist",
+    "prepare": "npm run dist",
+    "prepublishOnly": "npm run test && npm run lint",
     "dist": "npm run node && npm run web",
     "node": "webpack",
     "web": "webpack --config ./webpack.config.web.js",
@@ -37,7 +38,6 @@
     "browserfs": "^1.3.0",
     "eslint": "^4.2.0",
     "eslint-config-narazaka": "^1.0.0",
-    "eslint-loader": "^2.0.0",
     "mocha": "^5.0.0",
     "nyc": "^11.4.1",
     "power-assert": "^1.4.4",
