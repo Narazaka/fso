@@ -1,9 +1,10 @@
-parser: babel-eslint
 extends: narazaka
 env:
   es6: true
   node: true
   mocha: true
+parserOptions:
+  ecmaVersion: 2017
 rules:
   consistent-return: 0
   no-magic-numbers: 0
