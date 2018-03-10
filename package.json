@@ -15,7 +15,7 @@
   "scripts": {
     "prepare": "npm run dist",
     "prepublishOnly": "npm run test && npm run lint",
-    "dist": "babel --source-maps true -d dist/lib src/lib && shx cp src/lib/*.d.ts dist/lib",
+    "dist": "shx rm -rf dist && tsc --allowJs --target es3 --sourceMap --outDir dist/lib src/lib/fso.js && shx cp src/lib/*.d.ts dist/lib",
     "test": "nyc mocha",
     "lint": "eslint src test",
     "docdist": "cd doc && git clean -fd && git rm -rf * && cd .. && npm run doc && cd doc && touch .nojekyll && git add . && git commit -m doc && git push",
@@ -24,7 +24,6 @@
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^9.4.7",
-    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
     "babel-loader": "^7.1.4",
@@ -38,7 +37,8 @@
     "power-assert": "^1.4.4",
     "shx": "^0.2.2",
     "sinon": "^4.4.2",
-    "typedoc": "^0.11.0"
+    "typedoc": "^0.11.0",
+    "typescript": "^2.7.2"
   },
   "author": {
     "name": "narazaka",
