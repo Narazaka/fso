@@ -39,17 +39,6 @@ ES2015:
 import fso, {FileSystemObject} from 'fso';
 ```
 
-or use this on the browsers ...
-
-```html
-<script src="fso.js"></script>
-<script>
-/* BrowserFS init... */
-var FileSystemObject = fso.FileSystemObject;
-var fso = fso.default;
-</script>
-```
-
 API
 --------------------------
 
@@ -291,4 +280,4 @@ fso.new("a/b/c").resolve("/") // same as new FileSystemObject("/a/b/c")
 License
 --------------------------
 
-This is released under [MIT License](http://narazaka.net/license/MIT?2016).
+This is released under [MIT License](http://narazaka.net/license/MIT?2018).
