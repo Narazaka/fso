@@ -1,7 +1,7 @@
-import sinon from "sinon";
-import assert from "power-assert";
-import fs from "fs";
-import fso from "../src/lib/fso";
+const sinon = require("sinon");
+const assert = require("power-assert");
+const fs = require("fs");
+const fso = require("../src/lib/fso").default;
 
 const singlePathMethods = [
   "access",

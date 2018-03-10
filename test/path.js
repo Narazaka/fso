@@ -1,6 +1,6 @@
-import assert from "power-assert";
-import path from "path";
-import {FileSystemObject} from "../src/lib/fso";
+const assert = require("power-assert");
+const path = require("path");
+const {FileSystemObject} = require("../src/lib/fso");
 
 describe("FileSystemObject", () => {
   it("#constructor", () => {

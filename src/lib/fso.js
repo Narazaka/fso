@@ -1,5 +1,5 @@
-import fs from "fs";
-import path from "path";
+const fs = require("fs");
+const path = require("path");
 
 const singlePathMethods = [
   "access",
@@ -59,7 +59,7 @@ const statsMethods = [
 
 const childRe = new RegExp(`^\\.\\.(?:\\${path.sep}\\.\\.)*$`);
 
-export class FileSystemObject {
+class FileSystemObject {
   constructor(...paths) {
     this.path = path.join(...paths);
   }
@@ -590,4 +590,8 @@ for (const _method of statsMethods) {
   })(_method);
 }
 
-export default new FileSystemObject(process.cwd());
+module.exports = {
+  __esModule: true,
+  default:    new FileSystemObject(process.cwd()),
+  FileSystemObject,
+};
