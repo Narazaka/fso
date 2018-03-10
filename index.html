@@ -7,7 +7,6 @@
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
-	<script src="assets/js/modernizr.js"></script>
 </head>
 <body>
 <header>
@@ -61,17 +60,19 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="-fso-filesystemobject-https-github-com-narazaka-fso-"><a href="https://github.com/Narazaka/fso">fso - FileSystemObject</a></h1>
+				<h1 id="fso-filesystemobject"><a href="https://github.com/Narazaka/fso">fso - FileSystemObject</a></h1>
 				<p><a href="https://www.npmjs.com/package/fso"><img src="https://img.shields.io/npm/v/fso.svg" alt="npm"></a>
 					<a href="https://www.npmjs.com/package/fso"><img src="https://img.shields.io/npm/l/fso.svg" alt="npm license"></a>
 					<a href="https://www.npmjs.com/package/fso"><img src="https://img.shields.io/npm/dt/fso.svg" alt="npm download total"></a>
-				<a href="https://www.npmjs.com/package/fso"><img src="https://img.shields.io/npm/dm/fso.svg" alt="npm download by month"></a></p>
-				<p><a href="https://david-dm.org/Narazaka/fso"><img src="https://david-dm.org/Narazaka/fso.svg" alt="Dependency Status"></a>
-					<a href="https://david-dm.org/Narazaka/fso#info=devDependencies"><img src="https://david-dm.org/Narazaka/fso/dev-status.svg" alt="devDependency Status"></a>
-					<a href="https://travis-ci.org/Narazaka/fso"><img src="https://travis-ci.org/Narazaka/fso.svg" alt="Travis Build Status"></a>
-					<a href="https://ci.appveyor.com/project/Narazaka/fso"><img src="https://ci.appveyor.com/api/projects/status/github/Narazaka/fso?svg=true" alt="AppVeyor Build Status"></a>
+					<a href="https://www.npmjs.com/package/fso"><img src="https://img.shields.io/npm/dm/fso.svg" alt="npm download by month"></a>
+					<a href="https://david-dm.org/Narazaka/fso"><img src="https://david-dm.org/Narazaka/fso/status.svg" alt="dependencies Status"></a>
+				<a href="https://david-dm.org/Narazaka/fso?type=dev"><img src="https://david-dm.org/Narazaka/fso/dev-status.svg" alt="devDependencies Status"></a></p>
+				<p><a href="https://travis-ci.org/Narazaka/fso"><img src="https://travis-ci.org/Narazaka/fso.svg?branch=master" alt="Travis Build Status"></a>
+					<a href="https://ci.appveyor.com/project/Narazaka/fso"><img src="https://ci.appveyor.com/api/projects/status/github/Narazaka/fso?svg=true&amp;branch=master" alt="AppVeyor Build Status"></a>
 					<a href="https://codecov.io/github/Narazaka/fso?branch=master"><img src="https://codecov.io/github/Narazaka/fso/coverage.svg?branch=master" alt="codecov.io"></a>
-				<a href="https://codeclimate.com/github/Narazaka/fso"><img src="https://codeclimate.com/github/Narazaka/fso/badges/gpa.svg" alt="Code Climate"></a></p>
+					<a href="https://codeclimate.com/github/Narazaka/fso"><img src="https://codeclimate.com/github/Narazaka/fso/badges/gpa.svg" alt="Code Climate"></a>
+					<a href="https://www.codacy.com/app/narazaka/fso?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Narazaka/fso&amp;utm_campaign=badger"><img src="https://api.codacy.com/project/badge/Grade/b0ffe17aa40b41a7a446f4d70808228f" alt="Codacy Badge"></a>
+				<a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/Narazaka/fso.svg" alt="Greenkeeper badge"></a></p>
 				<p>fso - FileSystemObject is a objective fs interface like Pathname(ruby).</p>
 				<h2 id="installation">Installation</h2>
 				<pre><code>npm <span class="hljs-keyword">install</span> fso
@@ -82,14 +83,6 @@
 </code></pre>
 				<p>ES2015:</p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> fso, {FileSystemObject} <span class="hljs-keyword">from</span> <span class="hljs-string">'fso'</span>;
-</code></pre>
-				<p>or use this on the browsers ...</p>
-				<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"fso.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="actionscript">
-<span class="hljs-comment">/* BrowserFS init... */</span>
-<span class="hljs-keyword">var</span> FileSystemObject = fso.FileSystemObject;
-<span class="hljs-keyword">var</span> fso = fso.default;
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
 				<h2 id="api">API</h2>
 				<p><a href="https://narazaka.github.io/fso/index.html">API Documents (with type annotations)</a></p>
@@ -235,7 +228,7 @@ fso.new(<span class="hljs-string">"/a/b/c"</span>).relative(<span class="hljs-st
 				<pre><code class="lang-javascript">fso.new(<span class="hljs-string">"a/b/c"</span>).resolve(<span class="hljs-string">"/"</span>) <span class="hljs-comment">// same as new FileSystemObject("/a/b/c")</span>
 </code></pre>
 				<h2 id="license">License</h2>
-				<p>This is released under <a href="http://narazaka.net/license/MIT?2016">MIT License</a>.</p>
+				<p>This is released under <a href="http://narazaka.net/license/MIT?2018">MIT License</a>.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -316,7 +309,7 @@ fso.new(<span class="hljs-string">"/a/b/c"</span>).relative(<span class="hljs-st
 	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.io" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="assets/js/main.js"></script>
