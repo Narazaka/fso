@@ -436,7 +436,7 @@ class FileSystemObject {
 
   static _filterChildrenByPaths(children, exceptPaths) {
     return children.filter((child) => {
-      const index = exceptPaths.findIndex(child.path);
+      const index = exceptPaths.indexOf(child.path);
       if (index === -1) {
         return true;
       } else {
