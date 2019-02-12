@@ -23,7 +23,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/node": "^10.3.5",
+    "@types/node": "^11.9.0",
     "eslint": "^5.0.0",
     "eslint-config-narazaka": "^1.0.0",
     "intelli-espower-loader": "^1.0.1",
