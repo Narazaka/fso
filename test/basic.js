@@ -209,7 +209,7 @@ describe("open", () => {
   });
   afterEach(() => {
     fs[method].restore();
-    return fs[`${method}Sync`].restore();
+    fs[`${method}Sync`].restore();
   });
   it("should do like fs and store fd", () => {
     const filename = "/file";
@@ -231,7 +231,7 @@ describe("open", () => {
     assert(firstCall.calledWithExactly(file.path, ...args, firstCall.args[firstCall.args.length - 1]));
     assert(file.fd === fd);
   });
-  return it("should do like fs and store fd Sync", () => {
+  it("should do like fs and store fd Sync", () => {
     const filename = "/file";
     const file = fso.new(filename);
     const args = ["a", "b", [], 100, -1];
