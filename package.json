@@ -28,7 +28,7 @@
     "eslint-config-narazaka": "^1.0.0",
     "intelli-espower-loader": "^1.0.1",
     "mocha": "^6.0.0",
-    "nyc": "^12.0.1",
+    "nyc": "^13.2.0",
     "power-assert": "^1.6.0",
     "shx": "^0.3.0",
     "sinon": "^6.0.0",
