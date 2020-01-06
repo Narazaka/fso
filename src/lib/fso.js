@@ -594,4 +594,5 @@ module.exports = {
   __esModule: true,
   default:    new FileSystemObject(process.cwd()),
   FileSystemObject,
+  FSO:        FileSystemObject,
 };

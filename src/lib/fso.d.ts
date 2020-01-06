@@ -275,6 +275,8 @@ export class FileSystemObject {
   filteredChildrenAllSync(excepts?: string[] | ((path: FileSystemObject) => boolean)): FileSystemObject[];
 }
 
+export const FSO: typeof FileSystemObject;
+
 declare const fso: FileSystemObject;
 
 /** fso - fs operation with the path, like Pathname(Ruby) */
