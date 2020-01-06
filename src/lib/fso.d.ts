@@ -251,7 +251,7 @@ export class FileSystemObject {
   static format(pathObject: path.ParsedPath): FileSystemObject;
   parse(): path.ParsedPath;
   normalize(): FileSystemObject;
-  basename(): FileSystemObject;
+  basename(ext?: string): FileSystemObject;
   dirname(): FileSystemObject;
   extname(): string;
   isAbsolute(): boolean;

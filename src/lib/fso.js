@@ -294,8 +294,8 @@ class FileSystemObject {
     return this;
   }
 
-  basename() {
-    return new FileSystemObject(path.basename(this.path));
+  basename(ext) {
+    return new FileSystemObject(path.basename(this.path, ext));
   }
 
   dirname() {
