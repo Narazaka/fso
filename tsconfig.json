@@ -1,6 +1,12 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "target": "es2015"
-    }
+        "target": "es3",
+        "allowJs": true,
+        "outDir": "dist/lib",
+        "sourceMap": true
+    },
+    "include": [
+        "src"
+    ]
 }

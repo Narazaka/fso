@@ -15,7 +15,10 @@
   "scripts": {
     "prepare": "npm run dist",
     "prepublishOnly": "npm-run-all test lint",
-    "dist": "rimraf dist && tsc --allowJs --target es3 --sourceMap --outDir dist/lib src/lib/fso.js && shx cp src/lib/*.d.ts dist/lib",
+    "clean": "rimraf dist coverage",
+    "dist": "npm-run-all clean dist:js dist:ts",
+    "dist:js": "tsc",
+    "dist:ts": "shx cp src/lib/*.d.ts dist/lib",
     "test": "nyc mocha",
     "lint": "eslint .",
     "docdist": "cd doc && git clean -fd && git rm -rf * && cd .. && npm run doc && cd doc && touch .nojekyll && git add . && git commit -m doc && git push",
