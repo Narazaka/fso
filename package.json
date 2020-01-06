@@ -33,7 +33,7 @@
     "shx": "^0.3.0",
     "sinon": "^8.0.4",
     "typedoc": ">=0.15.6",
-    "typescript": "^3.3.3"
+    "typescript": "^3.7.4"
   },
   "author": {
     "name": "narazaka",
