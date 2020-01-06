@@ -6,7 +6,7 @@ describe("FileSystemObject", () => {
   it("#constructor", () => {
     const entry = "a/../b/./c";
     const entryFso = new FileSystemObject(entry);
-    assert(entryFso.toString(), path.normalize(entry));
+    assert(entryFso.toString() === path.normalize(entry));
   });
   it("#delimiter", () => {
     assert(new FileSystemObject("a").delimiter === path.delimiter);
