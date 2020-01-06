@@ -106,7 +106,7 @@ class FileSystemObject {
           } else {
             reject(error);
           }
-        })
+        }),
       );
     }
   }
@@ -390,7 +390,7 @@ class FileSystemObject {
   static async _childrenRecursive(dir, excepts, hasCallback) {
     const children = await FileSystemObject._filterChildren(await dir.children(), excepts, hasCallback);
     const childrenChildren = await Promise.all(children.map(async (child) =>
-      await child.isDirectory() ? [child].concat(await FileSystemObject._childrenRecursive(child, excepts)) : [child]
+      await child.isDirectory() ? [child].concat(await FileSystemObject._childrenRecursive(child, excepts)) : [child],
     ));
     return childrenChildren.reduce((flat, childChildren) => flat.concat(childChildren), []);
   }
@@ -404,9 +404,9 @@ class FileSystemObject {
       const conditions = await Promise.all(
         hasCallback
           ? children.map((child) => new Promise((resolve, reject) =>
-            excepts(child, (error, condition) => error ? reject(error) : resolve(condition)))
+            excepts(child, (error, condition) => error ? reject(error) : resolve(condition))),
           )
-          : children.map(excepts)
+          : children.map(excepts),
       );
       return children.filter((child, index) => conditions[index]);
     }
@@ -419,7 +419,7 @@ class FileSystemObject {
   static _childrenRecursiveSync(dir, excepts) {
     const children = FileSystemObject._filterChildrenSync(dir.childrenSync(), excepts);
     const childrenChildren = children.map((child) =>
-      child.isDirectorySync() ? [child].concat(FileSystemObject._childrenRecursiveSync(child, excepts)) : [child]
+      child.isDirectorySync() ? [child].concat(FileSystemObject._childrenRecursiveSync(child, excepts)) : [child],
     );
     return childrenChildren.reduce((flat, childChildren) => flat.concat(childChildren), []);
   }
@@ -480,8 +480,8 @@ for (const _method of singlePathMethods) {
       } else {
         return new Promise((resolve, reject) =>
           fs[method](this.path, ...args, (error, result) =>
-            error == null ? resolve(result) : reject(error)
-          )
+            error == null ? resolve(result) : reject(error),
+          ),
         );
       }
     };
@@ -511,8 +511,8 @@ for (const _method of currentNewPathMethods) {
       } else {
         return new Promise((resolve, reject) =>
           fs[method](currentPath, _newPath, ...args, (error, result) =>
-            error == null ? resolve(result) : reject(error)
-          )
+            error == null ? resolve(result) : reject(error),
+          ),
         );
       }
     };
@@ -534,8 +534,8 @@ for (const _method of fdMethods) {
       } else {
         return new Promise((resolve, reject) =>
           fs[method](this.fd, ...args, (error, result) =>
-            error == null ? resolve(result) : reject(error)
-          )
+            error == null ? resolve(result) : reject(error),
+          ),
         );
       }
     };
@@ -555,8 +555,8 @@ for (const _method of fdMultiReturnMethods) {
       } else {
         return new Promise((resolve, reject) =>
           fs[method](this.fd, ...args, (error, length) =>
-            error == null ? resolve(length) : reject(error)
-          )
+            error == null ? resolve(length) : reject(error),
+          ),
         );
       }
     };
@@ -574,11 +574,11 @@ for (const _method of statsMethods) {
       if (callback) {
         this.lstat().then(
           (stats) => callback(undefined, stats[method]()),
-          (error) => callback(error)
+          (error) => callback(error),
         );
       } else {
         return this.lstat().then(
-          (stats) => stats[method]()
+          (stats) => stats[method](),
         );
       }
     };

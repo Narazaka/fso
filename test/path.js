@@ -43,7 +43,7 @@ describe("FileSystemObject", () => {
     const entry2 = "a/c/d";
     assert(new FileSystemObject(entry1).relative(entry2).toString() === path.relative(entry1, entry2));
     assert(
-      new FileSystemObject(entry1).relative(new FileSystemObject(entry2)).toString() === path.relative(entry1, entry2)
+      new FileSystemObject(entry1).relative(new FileSystemObject(entry2)).toString() === path.relative(entry1, entry2),
     );
   });
   it("#resolve", () => {
@@ -51,7 +51,7 @@ describe("FileSystemObject", () => {
     const entry2 = "a/c/d";
     assert(new FileSystemObject(entry1).resolve(entry2).toString() === path.resolve(entry2, entry1));
     assert(
-      new FileSystemObject(entry1).resolve(new FileSystemObject(entry2)).toString() === path.resolve(entry2, entry1)
+      new FileSystemObject(entry1).resolve(new FileSystemObject(entry2)).toString() === path.resolve(entry2, entry1),
     );
   });
 });
