@@ -27,7 +27,7 @@
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^13.1.4",
-    "eslint": "^6.8.0",
+    "eslint": "^7.1.0",
     "eslint-config-narazaka": "^1.0.0",
     "intelli-espower-loader": "^1.0.1",
     "mocha": "^7.0.0",
